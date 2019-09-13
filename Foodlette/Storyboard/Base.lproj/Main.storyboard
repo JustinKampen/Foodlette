@@ -681,6 +681,7 @@
                         <outlet property="filterNarrativeLabel" destination="uPq-GX-Sqc" id="6cs-lr-DLf"/>
                         <outlet property="filterPopupView" destination="ZAu-kK-ojd" id="A0x-F2-ryC"/>
                         <outlet property="playButton" destination="0gF-rJ-aa5" id="ed9-7x-4Bw"/>
+                        <segue destination="R32-uw-OCZ" kind="show" identifier="playFoodlette" id="NQv-4G-Oy6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="648-1Q-4Ng" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -696,7 +697,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t1F-WR-pkz">
-                                <rect key="frame" x="0.0" y="88" width="414" height="150"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="150"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TMa-qY-qKo">
                                         <rect key="frame" x="8" y="8" width="134" height="134"/>
@@ -768,7 +769,7 @@
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="bTC-a1-RE2">
-                                <rect key="frame" x="0.0" y="238" width="414" height="575"/>
+                                <rect key="frame" x="0.0" y="194" width="414" height="668"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1016,6 +1017,7 @@
         <image name="small_5" width="82" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="NQv-4G-Oy6"/>
         <segue reference="07R-4H-wPC"/>
     </inferredMetricsTieBreakers>
 </document>

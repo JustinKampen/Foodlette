@@ -38,6 +38,8 @@ class WinnerViewController: UIViewController {
             displayInformationFor(winner: foodletteWinner)
             displayPinLocationFor(winner: foodletteWinner)
             saveDataFor(winner: foodletteWinner)
+        } else {
+            showAlert(message: "There was an error selecting the winner. Please try again")
         }
     }
     

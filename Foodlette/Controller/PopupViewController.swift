@@ -10,6 +10,9 @@ import UIKit
 
 class PopupViewController: UIViewController {
     
+    // -------------------------------------------------------------------------
+    // MARK: - Outlets and Variables
+    
     @IBOutlet weak var filterPopupView: UIView!
     @IBOutlet weak var filterImageView: UIImageView!
     @IBOutlet weak var filterNameLabel: UILabel!
@@ -20,6 +23,7 @@ class PopupViewController: UIViewController {
     
     var defaultFilterSelected: DefaultFilter?
     var createdFilterSelected: Filter?
+    var foodletteWinner: Business?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -27,12 +31,15 @@ class PopupViewController: UIViewController {
         transitioningDelegate = self
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
-        view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
-        filterPopupView.layer.cornerRadius = 5
-        playButton.layer.cornerRadius = 5
+//        view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
+        applyRoundStylingFor(filterPopupView)
+        applyRoundStylingFor(playButton)
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
         gestureRecognizer.cancelsTouchesInView = false
         gestureRecognizer.delegate = self
@@ -40,12 +47,15 @@ class PopupViewController: UIViewController {
         updatePopupView()
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: - UI Functionality
+    
     @IBAction func close() {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func selectWinnerFor(filter: Filter) {
-        
+        performSegue(withIdentifier: "playFoodlette", sender: nil)
     }
     
     func updatePopupView() {
@@ -58,13 +68,23 @@ class PopupViewController: UIViewController {
                     filterMinRatingLabel.text = String("Min Rating: \(minRating)")
                     filterMaxRatingLabel.text = String("Max Rating: \(maxRating)")
             }
+        } else {
+            showAlert(message: "No filter selected")
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if let controller = segue.destination as? WinnerViewController {
+            controller.foodletteWinner = foodletteWinner
+            controller.defaultFilterSelected = defaultFilterSelected
+            controller.createdFilterSelected = createdFilterSelected
+            navigationController?.popViewController(animated: true)
+        }
     }
 }
+
+// -----------------------------------------------------------------------------
+// MARK: - ViewControllerTransitionDelegate
 
 extension PopupViewController: UIViewControllerTransitioningDelegate {
     
@@ -80,6 +100,9 @@ extension PopupViewController: UIViewControllerTransitioningDelegate {
         return SlideOutAnimationController()
     }
 }
+
+// -----------------------------------------------------------------------------
+// MARK: - GestureRecognizerDelegate
 
 extension PopupViewController: UIGestureRecognizerDelegate {
     

@@ -57,7 +57,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
         collectionView.dataSource = self
         collectionView.delegate = self
         setupCollectionViewCells()
-        typeFilterSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: font ?? "HelveticaNeue-Bold"], for: .normal)
+        typeFilterSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: font ?? "Futura-Bold"], for: .normal)
         setupFetchedResultsController()
         updateEditButtonState()
         locationManager.requestWhenInUseAuthorization()
@@ -189,14 +189,18 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? WinnerViewController {
-            controller.foodletteWinner = foodletteWinner
-            controller.defaultFilterSelected = defaultFilterSelected
-            controller.createdFilterSelected = createdFilterSelected
-        } else if let controller = segue.destination as? PopupViewController {
-//            let indexPath = sender as! IndexPath
+        if let controller = segue.destination as? PopupViewController {
+            //            let indexPath = sender as! IndexPath
             let filter = defaultFilterSelected
             controller.defaultFilterSelected = filter
+//        if let controller = segue.destination as? WinnerViewController {
+//            controller.foodletteWinner = foodletteWinner
+//            controller.defaultFilterSelected = defaultFilterSelected
+//            controller.createdFilterSelected = createdFilterSelected
+//        } else if let controller = segue.destination as? PopupViewController {
+////            let indexPath = sender as! IndexPath
+//            let filter = defaultFilterSelected
+//            controller.defaultFilterSelected = filter
         }
     }
 }
