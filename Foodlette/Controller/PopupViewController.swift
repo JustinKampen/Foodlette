@@ -57,14 +57,12 @@ class PopupViewController: UIViewController {
     // MARK: - UI Functionality
     
     @IBAction func close() {
+        dismissStyle = .slide
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func selectWinnerFor(filter: Filter) {
         performSegue(withIdentifier: "winnerDetail", sender: nil)
-//        let homeViewController = HomeViewController()
-//        homeViewController
-//        dismiss(animated: true, completion: nil)
     }
     
     func updatePopupView() {
