@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailedViewController: UIViewController {
     
@@ -19,6 +20,7 @@ class DetailedViewController: UIViewController {
     @IBOutlet weak var restaurantRatingImageView: UIImageView!
     @IBOutlet weak var restaurantReviewsCountLabel: UILabel!
     @IBOutlet weak var restaurantSelectedOnLabel: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
     
     let dateFormatter: DateFormatter = {
         let df = DateFormatter()
@@ -34,8 +36,12 @@ class DetailedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Restaurant Details"
-        displayInformationFor(restaurant)
-        print(restaurant!)
+//        displayInformationFor(restaurant)
+//        print(restaurant!)
+    }
+    
+    @IBAction func closeButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     func displayRatingImage(for rating: Double) -> UIImage {
@@ -72,5 +78,25 @@ class DetailedViewController: UIViewController {
         }
 //            filterUsedLabel.text = "Filter used: \(String(describing: restaurant.withFilter))"
         }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// MARK: - MapView
+
+extension DetailedViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.tintColor = .red
+            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        } else {
+            pinView!.annotation = annotation
+        }
+        return pinView
     }
 }

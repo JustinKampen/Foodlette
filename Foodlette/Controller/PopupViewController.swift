@@ -21,6 +21,12 @@ class PopupViewController: UIViewController {
     @IBOutlet weak var filterMaxRatingLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     
+    enum AnimationStyle {
+        case slide
+        case fade
+    }
+    
+    var dismissStyle = AnimationStyle.fade
     var defaultFilterSelected: DefaultFilter?
     var createdFilterSelected: Filter?
     var foodletteWinner: Business?
@@ -55,7 +61,10 @@ class PopupViewController: UIViewController {
     }
     
     @IBAction func selectWinnerFor(filter: Filter) {
-        performSegue(withIdentifier: "playFoodlette", sender: nil)
+        performSegue(withIdentifier: "winnerDetail", sender: nil)
+//        let homeViewController = HomeViewController()
+//        homeViewController
+//        dismiss(animated: true, completion: nil)
     }
     
     func updatePopupView() {
@@ -72,6 +81,19 @@ class PopupViewController: UIViewController {
             showAlert(message: "No filter selected")
         }
     }
+    
+//    func selectWinnerFrom(data: [Business], minRating: Double = 1.0, maxRating: Double = 5.0) {
+//        for _ in data.indices {
+//            let winnerSelected = Int.random(in: 0...YelpModel.data.count - 1)
+//            if data[winnerSelected].rating >= minRating && data[winnerSelected].rating <= maxRating {
+//                foodletteWinner = data[winnerSelected]
+//                break
+//            } else {
+//                showAlert(message: "No restaurants found near you with \(minRating) to \(maxRating) rating. Please try again with a different filter")
+//                self.navigationItems(isEnabled: true)
+//            }
+//        }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? WinnerViewController {
@@ -97,7 +119,12 @@ extension PopupViewController: UIViewControllerTransitioningDelegate {
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return SlideOutAnimationController()
+        switch dismissStyle {
+        case .slide:
+            return SlideOutAnimationController()
+        case .fade:
+            return FadeOutAnimationController()
+        }
     }
 }
 

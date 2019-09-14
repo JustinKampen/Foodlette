@@ -175,7 +175,6 @@
                         <outlet property="flowLayout" destination="MPY-y5-TzC" id="Otd-Wu-jUH"/>
                         <outlet property="toolbar" destination="6F1-5j-a7v" id="SSn-8y-7ir"/>
                         <outlet property="typeFilterSegmentedControl" destination="jbv-5R-ID8" id="eIO-m1-Hj6"/>
-                        <segue destination="R32-uw-OCZ" kind="show" identifier="winnerSegue" id="e5m-bo-bG9"/>
                         <segue destination="gFh-gI-dfG" kind="presentation" identifier="showPopup" id="IV2-nB-7Rz"/>
                     </connections>
                 </viewController>
@@ -268,7 +267,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="56N-Wc-IUq" id="O1J-7B-1YU"/>
-                        <segue destination="yoe-Sf-Cjp" kind="show" identifier="favoriteDetail" id="EPG-cU-GPb"/>
+                        <segue destination="yoe-Sf-Cjp" kind="presentation" identifier="favoriteDetail" id="EPG-cU-GPb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2fZ-QV-k09" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -284,13 +283,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="asparagus-barbecue-bbq" translatesAutoresizingMaskIntoConstraints="NO" id="moN-yf-0ss">
-                                <rect key="frame" x="0.0" y="88" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="220"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="csQ-OG-Ay9"/>
+                                    <constraint firstAttribute="height" constant="220" id="Vk0-26-DBw"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OY-RW-dKM">
-                                <rect key="frame" x="8" y="396" width="398" height="28"/>
+                                <rect key="frame" x="8" y="316" width="398" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="hdC-3O-nS6"/>
                                 </constraints>
@@ -299,7 +298,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XgN-uW-tnw">
-                                <rect key="frame" x="8" y="440" width="398" height="53"/>
+                                <rect key="frame" x="8" y="352" width="398" height="53"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2WI-5m-U0S">
                                         <rect key="frame" x="0.0" y="0.0" width="127.5" height="53"/>
@@ -356,22 +355,49 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EM9-xn-02t">
+                                <rect key="frame" x="0.0" y="413" width="414" height="449"/>
+                            </mapView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5y6-Gy-yh8">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="c7f-XF-BEc"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem id="hob-6A-tKv">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="dpO-1s-dI5">
+                                            <color key="tintColor" red="0.0" green="0.58823529409999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="closeButtonTapped:" destination="yoe-Sf-Cjp" id="JL8-TA-aGv"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="5y6-Gy-yh8" firstAttribute="top" secondItem="Xl8-Mx-zb7" secondAttribute="top" id="0Ap-Ed-vJU"/>
                             <constraint firstItem="6OY-RW-dKM" firstAttribute="leading" secondItem="Xl8-Mx-zb7" secondAttribute="leading" constant="8" id="6az-z2-nQs"/>
-                            <constraint firstItem="moN-yf-0ss" firstAttribute="top" secondItem="Xl8-Mx-zb7" secondAttribute="top" id="B6B-tj-drd"/>
+                            <constraint firstItem="EM9-xn-02t" firstAttribute="leading" secondItem="Xl8-Mx-zb7" secondAttribute="leading" id="BK7-Xi-wcZ"/>
+                            <constraint firstItem="EM9-xn-02t" firstAttribute="top" secondItem="XgN-uW-tnw" secondAttribute="bottom" constant="8" id="DYQ-2p-uFR"/>
                             <constraint firstItem="Xl8-Mx-zb7" firstAttribute="trailing" secondItem="6OY-RW-dKM" secondAttribute="trailing" constant="8" id="EB3-hK-MW4"/>
-                            <constraint firstItem="moN-yf-0ss" firstAttribute="leading" secondItem="Xl8-Mx-zb7" secondAttribute="leading" id="Q3H-KO-ZVe"/>
-                            <constraint firstItem="moN-yf-0ss" firstAttribute="trailing" secondItem="Xl8-Mx-zb7" secondAttribute="trailing" id="T37-lU-i0h"/>
-                            <constraint firstItem="6OY-RW-dKM" firstAttribute="top" secondItem="moN-yf-0ss" secondAttribute="bottom" constant="8" id="fqH-vm-NpG"/>
+                            <constraint firstItem="5y6-Gy-yh8" firstAttribute="leading" secondItem="Xl8-Mx-zb7" secondAttribute="leading" id="UA0-Ff-sBz"/>
+                            <constraint firstItem="EM9-xn-02t" firstAttribute="bottom" secondItem="Xl8-Mx-zb7" secondAttribute="bottom" id="UtN-fc-OCj"/>
+                            <constraint firstItem="5y6-Gy-yh8" firstAttribute="trailing" secondItem="Xl8-Mx-zb7" secondAttribute="trailing" id="XvE-Zf-b7Z"/>
+                            <constraint firstItem="6OY-RW-dKM" firstAttribute="top" secondItem="moN-yf-0ss" secondAttribute="bottom" constant="8" id="aEF-Lj-KTU"/>
+                            <constraint firstItem="moN-yf-0ss" firstAttribute="leading" secondItem="Xl8-Mx-zb7" secondAttribute="leading" id="aZf-fx-Nbs"/>
                             <constraint firstItem="XgN-uW-tnw" firstAttribute="leading" secondItem="Xl8-Mx-zb7" secondAttribute="leading" constant="8" id="id9-HR-NtJ"/>
-                            <constraint firstItem="XgN-uW-tnw" firstAttribute="top" secondItem="6OY-RW-dKM" secondAttribute="bottom" constant="16" id="ozb-VN-U3b"/>
+                            <constraint firstItem="moN-yf-0ss" firstAttribute="top" secondItem="5y6-Gy-yh8" secondAttribute="bottom" id="jUv-gN-47X"/>
+                            <constraint firstItem="XgN-uW-tnw" firstAttribute="top" secondItem="6OY-RW-dKM" secondAttribute="bottom" constant="8" id="ozb-VN-U3b"/>
+                            <constraint firstItem="EM9-xn-02t" firstAttribute="trailing" secondItem="Xl8-Mx-zb7" secondAttribute="trailing" id="qgF-jf-1Ma"/>
+                            <constraint firstItem="moN-yf-0ss" firstAttribute="trailing" secondItem="Xl8-Mx-zb7" secondAttribute="trailing" id="vkt-bf-F4S"/>
                             <constraint firstItem="Xl8-Mx-zb7" firstAttribute="trailing" secondItem="XgN-uW-tnw" secondAttribute="trailing" constant="8" id="zzp-MY-O8p"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xl8-Mx-zb7"/>
                     </view>
                     <connections>
+                        <outlet property="mapView" destination="EM9-xn-02t" id="qZX-QE-vLv"/>
                         <outlet property="restaurantCategoryLabel" destination="H97-bs-oAF" id="lm5-Jg-jPM"/>
                         <outlet property="restaurantImageView" destination="moN-yf-0ss" id="lJP-1x-Yxp"/>
                         <outlet property="restaurantNameLabel" destination="6OY-RW-dKM" id="dgh-7c-1fR"/>
@@ -382,7 +408,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="km0-QZ-t2u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3018.840579710145" y="-238.39285714285714"/>
+            <point key="canvasLocation" x="2902.898550724638" y="859.82142857142856"/>
         </scene>
         <!--Filter View Controller-->
         <scene sceneID="LS4-wb-IRj">
@@ -681,12 +707,12 @@
                         <outlet property="filterNarrativeLabel" destination="uPq-GX-Sqc" id="6cs-lr-DLf"/>
                         <outlet property="filterPopupView" destination="ZAu-kK-ojd" id="A0x-F2-ryC"/>
                         <outlet property="playButton" destination="0gF-rJ-aa5" id="ed9-7x-4Bw"/>
-                        <segue destination="R32-uw-OCZ" kind="show" identifier="playFoodlette" id="NQv-4G-Oy6"/>
+                        <segue destination="yoe-Sf-Cjp" kind="presentation" identifier="winnerDetail" id="cdr-cP-jmY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="648-1Q-4Ng" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="1599.7767857142856"/>
+            <point key="canvasLocation" x="1958" y="1600"/>
         </scene>
         <!--Winner View Controller-->
         <scene sceneID="Ax6-Us-Yey">
@@ -922,7 +948,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="LNB-DR-8Vq" id="6eu-JZ-2bK"/>
-                        <segue destination="yoe-Sf-Cjp" kind="show" identifier="recentDetail" id="07R-4H-wPC"/>
+                        <segue destination="yoe-Sf-Cjp" kind="presentation" identifier="recentDetail" id="07R-4H-wPC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4N-gw-P9Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1017,7 +1043,6 @@
         <image name="small_5" width="82" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NQv-4G-Oy6"/>
         <segue reference="07R-4H-wPC"/>
     </inferredMetricsTieBreakers>
 </document>
