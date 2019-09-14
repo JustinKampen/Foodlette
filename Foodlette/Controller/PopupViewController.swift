@@ -30,6 +30,7 @@ class PopupViewController: UIViewController {
     var defaultFilterSelected: DefaultFilter?
     var createdFilterSelected: Filter?
     var foodletteWinner: Business?
+    var dataController = DataController.shared
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -60,8 +61,15 @@ class PopupViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func selectWinnerFor(filter: Filter) {
-        performSegue(withIdentifier: "winnerDetail", sender: nil)
+    @IBAction func playButtonTapped(_ sender: Any) {
+        selectWinnerFrom(data: YelpModel.data)
+        
+        if let foodletteWinner = foodletteWinner {
+            saveDataFor(winner: foodletteWinner)
+            performSegue(withIdentifier: "winnerDetail", sender: nil)
+        } else {
+            showAlert(message: "There was an error selecting the winner. Please try again")
+        }
     }
     
     func updatePopupView() {
@@ -103,12 +111,32 @@ class PopupViewController: UIViewController {
         }
     }
     
+    func saveDataFor(winner: Business) {
+        let restaurant = Restaurant(context: dataController.viewContext)
+        restaurant.name = winner.name
+        print(winner)
+        restaurant.category = winner.categories.first?.title
+        restaurant.date = Date()
+        restaurant.rating = winner.rating
+        restaurant.reviewCount = "\(String(describing: winner.reviewCount)) Reviews"
+        restaurant.image = Data(winner.imageURL.utf8)
+        if defaultFilterSelected != nil {
+            if let defaultFilterSelected = defaultFilterSelected {
+                restaurant.withFilter = "Selected with \"\(String(defaultFilterSelected.name))\""
+            }
+        } else if createdFilterSelected != nil {
+            if let createdFilterSelected = createdFilterSelected {
+                restaurant.withFilter = "Selected with \"\(String(createdFilterSelected.name!))\""
+            }
+        }
+        dataController.saveViewContext()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? WinnerViewController {
             controller.foodletteWinner = foodletteWinner
             controller.defaultFilterSelected = defaultFilterSelected
             controller.createdFilterSelected = createdFilterSelected
-//            navigationController?.popViewController(animated: true)
         }
     }
 }

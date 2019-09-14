@@ -670,7 +670,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="selectWinnerForFilter:" destination="gFh-gI-dfG" eventType="touchUpInside" id="IW8-cA-pAL"/>
+                                            <action selector="playButtonTapped:" destination="gFh-gI-dfG" eventType="touchUpInside" id="kTW-5I-YCu"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1043,6 +1043,6 @@
         <image name="small_5" width="82" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="07R-4H-wPC"/>
+        <segue reference="cdr-cP-jmY"/>
     </inferredMetricsTieBreakers>
 </document>

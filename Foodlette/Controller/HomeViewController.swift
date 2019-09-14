@@ -30,7 +30,6 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
     var fetchedFilterArray: [Filter] = []
     var defaultFilterSelected: DefaultFilter?
     var createdFilterSelected: Filter?
-//    var foodletteWinner: Business?
     
     // -------------------------------------------------------------------------
     // MARK: - Fetching Data
@@ -175,31 +174,11 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
     // -------------------------------------------------------------------------
     // MARK: - Select Foodlette Winner
     
-//    func selectWinnerFrom(data: [Business], minRating: Double = 1.0, maxRating: Double = 5.0) {
-//        for _ in data.indices {
-//            let winnerSelected = Int.random(in: 0...YelpModel.data.count - 1)
-//            if data[winnerSelected].rating >= minRating && data[winnerSelected].rating <= maxRating {
-//                foodletteWinner = data[winnerSelected]
-//                break
-//            } else {
-//                showAlert(message: "No restaurants found near you with \(minRating) to \(maxRating) rating. Please try again with a different filter")
-//                self.navigationItems(isEnabled: true)
-//            }
-//        }
-//    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? PopupViewController {
             controller.defaultFilterSelected = defaultFilterSelected
             controller.createdFilterSelected = createdFilterSelected
-//        if let controller = segue.destination as? WinnerViewController {
-//            controller.foodletteWinner = foodletteWinner
-//            controller.defaultFilterSelected = defaultFilterSelected
-//            controller.createdFilterSelected = createdFilterSelected
-//        } else if let controller = segue.destination as? PopupViewController {
-////            let indexPath = sender as! IndexPath
-//            let filter = defaultFilterSelected
-//            controller.defaultFilterSelected = filter
+//            let indexPath = sender as! IndexPath
         }
     }
 }
@@ -267,11 +246,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                     self.showAlert(message: "No restaurants found near you. Please try again with a different filter")
                     self.activityIndicator(isAnimating: false, indexPath: indexPath)
                 } else {
-//                    self.selectWinnerFrom(data: YelpModel.data, minRating: filter.minRating ?? 1.0, maxRating: filter.maxRating ?? 5.0)
                     self.activityIndicator(isAnimating: false, indexPath: indexPath)
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "showPopup", sender: nil)
-//                        self.performSegue(withIdentifier: "winnerSegue", sender: nil)
                     }
                 }
             }
@@ -291,15 +268,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                         self.showAlert(message: "No restaurants found near you. Please try again with a different filter")
                         self.activityIndicator(isAnimating: false, indexPath: indexPath)
                     } else {
-//                        guard let filterSelected = self.createdFilterSelected else {
-//                            self.showAlert(message: "No filter selected. Please try again")
-//                            self.activityIndicator(isAnimating: false, indexPath: indexPath)
-//                            return
-//                        }
-//                        self.selectWinnerFrom(data: YelpModel.data, minRating: filterSelected.minRating, maxRating: filterSelected.maxRating)
                         self.activityIndicator(isAnimating: false, indexPath: indexPath)
                         DispatchQueue.main.async {
-                            self.performSegue(withIdentifier: "winnerSegue", sender: nil)
+                            self.performSegue(withIdentifier: "showPopup", sender: nil)
                         }
                     }
                 }
