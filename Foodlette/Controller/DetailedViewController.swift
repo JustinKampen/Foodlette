@@ -28,7 +28,11 @@ class DetailedViewController: UIViewController {
         return df
     }()
     
+    var dataController = DataController.shared
     var restaurant: Restaurant?
+    var foodletteWinner: Business?
+    var defaultFilterSelected: DefaultFilter?
+    var createdFilterSelected: Filter?
     
     // -------------------------------------------------------------------------
     // MARK: - Life Cycle
@@ -36,9 +40,14 @@ class DetailedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Restaurant Details"
-//        displayInformationFor(restaurant)
-//        print(restaurant!)
-    }
+        mapView.delegate = self
+        if let foodletteWinner = foodletteWinner {
+            displayInformationFor(winner: foodletteWinner)
+            displayPinLocationFor(winner: foodletteWinner)
+            saveDataFor(winner: foodletteWinner)
+        } else {
+            showAlert(message: "There was an error selecting the winner. Please try again")
+        }    }
     
     @IBAction func closeButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -78,6 +87,51 @@ class DetailedViewController: UIViewController {
         }
 //            filterUsedLabel.text = "Filter used: \(String(describing: restaurant.withFilter))"
         }
+    }
+    
+    func displayInformationFor(winner: Business) {
+        restaurantNameLabel.text = winner.name
+        restaurantRatingImageView.image = winner.ratingImage
+        restaurantReviewsCountLabel.text = "\(String(describing: winner.reviewCount)) Reviews"
+//        if defaultFilterSelected != nil {
+//            if let defaultFilterSelected = defaultFilterSelected {
+//                filterSelectedLabel.text = "Selected with \"\(String(defaultFilterSelected.name))\""
+//            }
+//        } else {
+//            if let userFilterSelected = createdFilterSelected {
+//                filterSelectedLabel.text = "Selected with \"\(String(userFilterSelected.name!))\""
+//            }
+//        }
+        if let url = URL(string: winner.imageURL) {
+            if let data = try? Data(contentsOf: url) {
+                restaurantImageView.image = UIImage(data: data)
+            }
+        }
+    }
+    
+    func displayPinLocationFor(winner: Business) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate.latitude = winner.coordinates.latitude
+        annotation.coordinate.longitude = winner.coordinates.longitude
+        let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
+        mapView.addAnnotation(annotation)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func saveDataFor(winner: Business) {
+        let restaurant = Restaurant(context: dataController.viewContext)
+        restaurant.name = winner.name
+        print(winner)
+        restaurant.category = winner.categories.first?.title
+//        restaurant.withFilter = winner.
+        restaurant.date = Date()
+        restaurant.rating = winner.rating
+        restaurant.reviewCount = "\(String(describing: winner.reviewCount)) Reviews"
+        if let winnerImage = restaurantImageView.image {
+            let imageData = winnerImage.jpegData(compressionQuality: 0.8)
+            restaurant.image = imageData
+        }
+        dataController.saveViewContext()
     }
 }
 

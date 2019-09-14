@@ -14,5 +14,4 @@ class FavoritesTableViewCell: UITableViewCell {
     @IBOutlet weak var favoriteCategoryLabel: UILabel!
     @IBOutlet weak var favoriteImageView: UIImageView!
     @IBOutlet weak var isFavoriteButton: UIButton!
-    
 }

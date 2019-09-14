@@ -43,7 +43,6 @@ class PopupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
-//        view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
         applyRoundStylingFor(filterPopupView)
         applyRoundStylingFor(playButton)
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
@@ -75,30 +74,41 @@ class PopupViewController: UIViewController {
                     filterMinRatingLabel.text = String("Min Rating: \(minRating)")
                     filterMaxRatingLabel.text = String("Max Rating: \(maxRating)")
             }
+        } else if createdFilterSelected != nil {
+            filterNameLabel.text = createdFilterSelected?.name
+            if let imageData = createdFilterSelected?.image {
+                filterImageView?.image = UIImage(data: imageData)
+            }
+            filterNarrativeLabel.text = createdFilterSelected?.narrative
+            if let minRating = createdFilterSelected?.minRating,
+                let maxRating = createdFilterSelected?.maxRating {
+                filterMinRatingLabel.text = String("Min Rating: \(minRating)")
+                filterMaxRatingLabel.text = String("Max Rating: \(maxRating)")
+            }
         } else {
             showAlert(message: "No filter selected")
         }
     }
     
-//    func selectWinnerFrom(data: [Business], minRating: Double = 1.0, maxRating: Double = 5.0) {
-//        for _ in data.indices {
-//            let winnerSelected = Int.random(in: 0...YelpModel.data.count - 1)
-//            if data[winnerSelected].rating >= minRating && data[winnerSelected].rating <= maxRating {
-//                foodletteWinner = data[winnerSelected]
-//                break
-//            } else {
-//                showAlert(message: "No restaurants found near you with \(minRating) to \(maxRating) rating. Please try again with a different filter")
+    func selectWinnerFrom(data: [Business], minRating: Double = 1.0, maxRating: Double = 5.0) {
+        for _ in data.indices {
+            let winnerSelected = Int.random(in: 0...YelpModel.data.count - 1)
+            if data[winnerSelected].rating >= minRating && data[winnerSelected].rating <= maxRating {
+                foodletteWinner = data[winnerSelected]
+                break
+            } else {
+                showAlert(message: "No restaurants found near you with \(minRating) to \(maxRating) rating. Please try again with a different filter")
 //                self.navigationItems(isEnabled: true)
-//            }
-//        }
-//    }
+            }
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? WinnerViewController {
             controller.foodletteWinner = foodletteWinner
             controller.defaultFilterSelected = defaultFilterSelected
             controller.createdFilterSelected = createdFilterSelected
-            navigationController?.popViewController(animated: true)
+//            navigationController?.popViewController(animated: true)
         }
     }
 }
