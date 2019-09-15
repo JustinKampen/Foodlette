@@ -53,9 +53,15 @@ class DetailedViewController: UIViewController {
         }
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: - UI Functionality
+    
     @IBAction func closeButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Life Cycle
     
     func displayRatingImage(for rating: Double) -> UIImage {
         var ratingImage: UIImage {

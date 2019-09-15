@@ -34,5 +34,4 @@ class DimmingPresentationController: UIPresentationController {
             }, completion: nil)
         }
     }
-    
 }

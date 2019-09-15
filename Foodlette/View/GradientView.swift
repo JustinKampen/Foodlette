@@ -34,5 +34,4 @@ class GradientView: UIView {
         let context = UIGraphicsGetCurrentContext()
         context?.drawRadialGradient(gradient!, startCenter: centerPoint, startRadius: 0, endCenter: centerPoint, endRadius: radius, options: .drawsAfterEndLocation)
     }
-    
 }

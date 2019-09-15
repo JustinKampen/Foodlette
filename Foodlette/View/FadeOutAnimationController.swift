@@ -25,4 +25,3 @@ class FadeOutAnimationController: NSObject, UIViewControllerAnimatedTransitionin
         }
     }
 }
-
