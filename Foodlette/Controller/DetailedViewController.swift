@@ -44,10 +44,14 @@ class DetailedViewController: UIViewController {
         if let foodletteWinner = foodletteWinner {
             displayInformationFor(winner: foodletteWinner)
             displayPinLocationFor(winner: foodletteWinner)
-            saveDataFor(winner: foodletteWinner)
+//            saveDataFor(winner: foodletteWinner)
+        } else if restaurant != nil {
+            displayInformationFor(restaurant)
+            
         } else {
             showAlert(message: "There was an error selecting the winner. Please try again")
-        }    }
+        }
+    }
     
     @IBAction func closeButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)

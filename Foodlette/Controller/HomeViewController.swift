@@ -178,7 +178,6 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
         if let controller = segue.destination as? PopupViewController {
             controller.defaultFilterSelected = defaultFilterSelected
             controller.createdFilterSelected = createdFilterSelected
-//            let indexPath = sender as! IndexPath
         }
     }
 }
