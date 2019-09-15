@@ -103,6 +103,8 @@ class DetailedViewController: UIViewController {
         restaurantNameLabel.text = winner.name
         restaurantRatingImageView.image = winner.ratingImage
         restaurantReviewsCountLabel.text = "\(String(describing: winner.reviewCount)) Reviews"
+        let date = Date()
+        restaurantSelectedOnLabel.text = dateFormatter.string(from: date)
         if let url = URL(string: winner.imageURL) {
             if let data = try? Data(contentsOf: url) {
                 restaurantImageView.image = UIImage(data: data)
