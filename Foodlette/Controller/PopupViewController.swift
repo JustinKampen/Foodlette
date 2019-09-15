@@ -64,8 +64,7 @@ class PopupViewController: UIViewController {
     
     @IBAction func playButtonTapped(_ sender: Any) {
         selectWinnerFrom(data: YelpModel.data)
-        if let foodletteWinner = foodletteWinner {
-            saveDataFor(winner: foodletteWinner)
+        if foodletteWinner != nil {
             performSegue(withIdentifier: "winnerDetail", sender: nil)
         } else {
             showAlert(message: "There was an error selecting the winner. Please try again")
@@ -110,29 +109,14 @@ class PopupViewController: UIViewController {
         }
     }
     
-    func saveDataFor(winner: Business) {
-        let restaurantToSave = Restaurant(context: dataController.viewContext)
-        restaurantToSave.name = winner.name
-        restaurantToSave.category = winner.categories.first?.title
-        restaurantToSave.date = Date()
-        restaurantToSave.rating = winner.rating
-        restaurantToSave.reviewCount = "\(String(describing: winner.reviewCount)) Reviews"
-        restaurantToSave.image = Data(winner.imageURL.utf8)
-        if defaultFilterSelected != nil {
-            if let defaultFilterSelected = defaultFilterSelected {
-                restaurantToSave.withFilter = "Selected with \"\(String(defaultFilterSelected.name))\""
-            }
-        } else if createdFilterSelected != nil {
-            if let createdFilterSelected = createdFilterSelected {
-                restaurantToSave.withFilter = "Selected with \"\(String(createdFilterSelected.name!))\""
-            }
-        }
-        dataController.saveViewContext()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? DetailedViewController {
             controller.foodletteWinner = foodletteWinner
+            if let defaultFilterSelected = defaultFilterSelected {
+                controller.defaultFilterSelected = defaultFilterSelected
+            } else if let createdFilterSelected = createdFilterSelected {
+                controller.createdFilterSelected = createdFilterSelected
+            }
         }
     }
 }
