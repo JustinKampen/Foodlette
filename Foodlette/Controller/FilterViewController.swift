@@ -24,7 +24,6 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate, NS
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var albumsButton: UIBarButtonItem!
     
-//    let homeViewController = HomeViewController()
     var dataController = DataController.shared
     var minRating = 0.0
     var maxRating = 5.0

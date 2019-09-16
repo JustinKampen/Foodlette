@@ -50,6 +50,8 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         tableView.dataSource = self
         tableView.delegate = self
         setupFetchedResultsController()
+        
+//        tableView.register(UINib.init(nibName: "RecentsTableViewCell", bundle: nil), forCellReuseIdentifier: "RecentsCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,7 +64,7 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         super.viewWillDisappear(animated)
         fetchedResultsController = nil
     }
-    
+
     // -------------------------------------------------------------------------
     // MARK: - UI Functionality
     
@@ -103,12 +105,6 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         tableView.setEditing(editing, animated: animated)
     }
     
-    func saveDataForFavorite(bool: Bool) {
-        if bool {
-            
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "recentDetail" {
             let controller = segue.destination as! DetailedViewController
@@ -141,13 +137,7 @@ extension RecentsViewController: UITableViewDataSource, UITableViewDelegate {
         if let date = recent.date {
             cell.recentDateLabel.text = dateFormatter.string(from: date)
         }
-        if recent.isFavorite {
-            let heartImage = UIImage(named: "filled-heart-50")
-            cell.isFavoriteButton.setImage(heartImage, for: .normal)
-        } else {
-            let heartImage = UIImage(named: "open-heart-50")
-            cell.isFavoriteButton.setImage(heartImage, for: .normal)
-        }
+
         return cell
     }
     

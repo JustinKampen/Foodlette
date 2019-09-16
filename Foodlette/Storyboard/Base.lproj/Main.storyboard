@@ -227,7 +227,7 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHj-c8-3ap" customClass="FavoriteButton" customModule="Foodlette" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHj-c8-3ap">
                                                     <rect key="frame" x="374" y="5" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="35" id="GOW-zg-4AX"/>
@@ -790,14 +790,6 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYE-hh-95z" customClass="FavoriteButton" customModule="Foodlette" customModuleProvider="target">
-                                                    <rect key="frame" x="374" y="5" width="35" height="35"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="8cb-b9-SGq"/>
-                                                        <constraint firstAttribute="width" constant="35" id="Hli-JJ-QYK"/>
-                                                    </constraints>
-                                                    <state key="normal" image="open-heart-50"/>
-                                                </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ur-t8-6l5">
                                                     <rect key="frame" x="5" y="5" width="55" height="55"/>
                                                     <constraints>
@@ -805,25 +797,34 @@
                                                         <constraint firstAttribute="width" constant="55" id="S33-3n-roB"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="04i-mg-2AJ">
+                                                    <rect key="frame" x="374" y="5" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="AvY-cJ-YuN"/>
+                                                        <constraint firstAttribute="width" constant="35" id="C3o-gj-Y4X"/>
+                                                    </constraints>
+                                                    <state key="normal" image="open-heart-50"/>
+                                                    <state key="selected" image="filled-heart-50"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="04i-mg-2AJ" firstAttribute="top" secondItem="0r5-g9-Hmi" secondAttribute="top" constant="5" id="08U-Qn-emD"/>
+                                                <constraint firstAttribute="trailing" secondItem="04i-mg-2AJ" secondAttribute="trailing" constant="5" id="0Iw-Vl-Tkw"/>
                                                 <constraint firstItem="1ur-t8-6l5" firstAttribute="top" secondItem="0r5-g9-Hmi" secondAttribute="top" constant="5" id="98n-ge-9lg"/>
-                                                <constraint firstItem="EYE-hh-95z" firstAttribute="leading" secondItem="Gua-7X-1vW" secondAttribute="trailing" constant="5" id="E3o-39-AMp"/>
                                                 <constraint firstItem="Gua-7X-1vW" firstAttribute="leading" secondItem="1ur-t8-6l5" secondAttribute="trailing" constant="5" id="GOe-ys-b6e"/>
                                                 <constraint firstItem="1ur-t8-6l5" firstAttribute="leading" secondItem="0r5-g9-Hmi" secondAttribute="leading" constant="5" id="IfD-1x-zVe"/>
                                                 <constraint firstItem="p9g-1i-ttq" firstAttribute="top" secondItem="Gua-7X-1vW" secondAttribute="bottom" id="RfY-1g-Cz9"/>
                                                 <constraint firstItem="SX4-lb-BrI" firstAttribute="top" secondItem="0r5-g9-Hmi" secondAttribute="top" constant="5" id="ZSu-G0-n3E"/>
                                                 <constraint firstItem="SX4-lb-BrI" firstAttribute="leading" secondItem="1ur-t8-6l5" secondAttribute="trailing" constant="5" id="cs6-83-fWG"/>
-                                                <constraint firstAttribute="trailing" secondItem="EYE-hh-95z" secondAttribute="trailing" constant="5" id="dGN-LO-iRR"/>
-                                                <constraint firstItem="EYE-hh-95z" firstAttribute="top" secondItem="0r5-g9-Hmi" secondAttribute="top" constant="5" id="dVl-MZ-zzu"/>
                                                 <constraint firstItem="Gua-7X-1vW" firstAttribute="top" secondItem="SX4-lb-BrI" secondAttribute="bottom" id="lUR-E1-3Wz"/>
-                                                <constraint firstItem="EYE-hh-95z" firstAttribute="leading" secondItem="SX4-lb-BrI" secondAttribute="trailing" constant="5" id="nL4-3x-cdQ"/>
                                                 <constraint firstItem="p9g-1i-ttq" firstAttribute="leading" secondItem="1ur-t8-6l5" secondAttribute="trailing" constant="5" id="pZv-Ot-T4S"/>
                                                 <constraint firstAttribute="trailing" secondItem="p9g-1i-ttq" secondAttribute="trailing" constant="5" id="uFD-nZ-4Sx"/>
+                                                <constraint firstItem="04i-mg-2AJ" firstAttribute="leading" secondItem="Gua-7X-1vW" secondAttribute="trailing" constant="5" id="woO-B0-Eqm"/>
+                                                <constraint firstItem="04i-mg-2AJ" firstAttribute="leading" secondItem="SX4-lb-BrI" secondAttribute="trailing" constant="5" id="zVw-oa-lsf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="isFavoriteButton" destination="EYE-hh-95z" id="faT-Z0-lmw"/>
+                                            <outlet property="isFavoriteButton" destination="04i-mg-2AJ" id="KJg-2J-kyw"/>
                                             <outlet property="recentDateLabel" destination="SX4-lb-BrI" id="pKz-Yg-khG"/>
                                             <outlet property="recentFilterSelectedLabel" destination="p9g-1i-ttq" id="j7d-cz-0Xv"/>
                                             <outlet property="recentImageView" destination="1ur-t8-6l5" id="D3M-Un-MMJ"/>
@@ -928,6 +929,7 @@
         <image name="CloseButton" width="15" height="15"/>
         <image name="Unchecked" width="22" height="22"/>
         <image name="asparagus-barbecue-bbq" width="3000" height="2000"/>
+        <image name="filled-heart-50" width="50" height="50"/>
         <image name="gallery" width="30" height="30"/>
         <image name="heart" width="30" height="30"/>
         <image name="history" width="30" height="30"/>
@@ -936,6 +938,6 @@
         <image name="small_5" width="82" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cdr-cP-jmY"/>
+        <segue reference="07R-4H-wPC"/>
     </inferredMetricsTieBreakers>
 </document>

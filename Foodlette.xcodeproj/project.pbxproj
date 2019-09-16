@@ -18,14 +18,12 @@
 		D0250E9C22C5D61200A966B9 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250E9B22C5D61200A966B9 /* FilterViewController.swift */; };
 		D0250EA022C5D62A00A966B9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250E9F22C5D62A00A966B9 /* HomeViewController.swift */; };
 		D0250EA222C5D63A00A966B9 /* RecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250EA122C5D63A00A966B9 /* RecentsViewController.swift */; };
-		D0250EA422C5D66B00A966B9 /* WinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250EA322C5D66B00A966B9 /* WinnerViewController.swift */; };
 		D0250EA622C5D68000A966B9 /* YelpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250EA522C5D68000A966B9 /* YelpResponse.swift */; };
 		D0250EA822C5D68F00A966B9 /* YelpConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250EA722C5D68F00A966B9 /* YelpConstants.swift */; };
 		D0250EAB22C5D69B00A966B9 /* Foodlette.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0250EA922C5D69B00A966B9 /* Foodlette.xcdatamodeld */; };
 		D0250EAD22C5D6B600A966B9 /* YelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250EAC22C5D6B600A966B9 /* YelpModel.swift */; };
 		D0275F4022C6B9B80062F8D3 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0275F3F22C6B9B80062F8D3 /* DetailedViewController.swift */; };
 		D08407FB232C8A0900E9C3C8 /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08407FA232C8A0900E9C3C8 /* FadeOutAnimationController.swift */; };
-		D0889A632310E3D4008E2CE5 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0889A622310E3D4008E2CE5 /* FavoriteButton.swift */; };
 		D08B12DA22C72B4600F84A97 /* DefaultFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B12D922C72B4600F84A97 /* DefaultFilter.swift */; };
 		D08B12DC22C73F8800F84A97 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B12DB22C73F8800F84A97 /* FilterCollectionViewCell.swift */; };
 		D08B12E222C73FFA00F84A97 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B12E122C73FFA00F84A97 /* FavoritesTableViewCell.swift */; };
@@ -51,14 +49,12 @@
 		D0250E9B22C5D61200A966B9 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		D0250E9F22C5D62A00A966B9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D0250EA122C5D63A00A966B9 /* RecentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsViewController.swift; sourceTree = "<group>"; };
-		D0250EA322C5D66B00A966B9 /* WinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerViewController.swift; sourceTree = "<group>"; };
 		D0250EA522C5D68000A966B9 /* YelpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpResponse.swift; sourceTree = "<group>"; };
 		D0250EA722C5D68F00A966B9 /* YelpConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpConstants.swift; sourceTree = "<group>"; };
 		D0250EAA22C5D69B00A966B9 /* Foodlette.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Foodlette.xcdatamodel; sourceTree = "<group>"; };
 		D0250EAC22C5D6B600A966B9 /* YelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpModel.swift; sourceTree = "<group>"; };
 		D0275F3F22C6B9B80062F8D3 /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
 		D08407FA232C8A0900E9C3C8 /* FadeOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeOutAnimationController.swift; sourceTree = "<group>"; };
-		D0889A622310E3D4008E2CE5 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		D08B12D922C72B4600F84A97 /* DefaultFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFilter.swift; sourceTree = "<group>"; };
 		D08B12DB22C73F8800F84A97 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		D08B12E122C73FFA00F84A97 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
@@ -127,7 +123,6 @@
 		D0250E9722C5D5AC00A966B9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D0889A622310E3D4008E2CE5 /* FavoriteButton.swift */,
 				D0CDD46723261AF20026F5A7 /* SlideOutAnimationController.swift */,
 				D0CDD46523261AD00026F5A7 /* BounceAnimcationController.swift */,
 				D0CDD4602326171B0026F5A7 /* DimmingPresentationController.swift */,
@@ -157,7 +152,6 @@
 				D0250E9B22C5D61200A966B9 /* FilterViewController.swift */,
 				D0250EA122C5D63A00A966B9 /* RecentsViewController.swift */,
 				D009AAE722C652720069594C /* FavoritesViewController.swift */,
-				D0250EA322C5D66B00A966B9 /* WinnerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -295,11 +289,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D009AAE822C652720069594C /* FavoritesViewController.swift in Sources */,
-				D0889A632310E3D4008E2CE5 /* FavoriteButton.swift in Sources */,
 				D0CDD463232618760026F5A7 /* GradientView.swift in Sources */,
 				D0250EA622C5D68000A966B9 /* YelpResponse.swift in Sources */,
 				D0250E9C22C5D61200A966B9 /* FilterViewController.swift in Sources */,
-				D0250EA422C5D66B00A966B9 /* WinnerViewController.swift in Sources */,
 				D0250E9622C5D59A00A966B9 /* YelpClient.swift in Sources */,
 				D0250EAD22C5D6B600A966B9 /* YelpModel.swift in Sources */,
 				D08B12E422C7400B00F84A97 /* RecentsTableViewCell.swift in Sources */,

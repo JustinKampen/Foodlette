@@ -15,4 +15,9 @@ class RecentsTableViewCell: UITableViewCell {
     @IBOutlet weak var recentDateLabel: UILabel!
     @IBOutlet weak var recentImageView: UIImageView!
     @IBOutlet weak var isFavoriteButton: UIButton!
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
 }

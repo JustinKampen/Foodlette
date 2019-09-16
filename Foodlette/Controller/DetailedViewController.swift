@@ -39,7 +39,6 @@ class DetailedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Restaurant Details"
         mapView.delegate = self
         if let foodletteWinner = foodletteWinner {
             displayInformationFor(winner: foodletteWinner)
@@ -61,7 +60,7 @@ class DetailedViewController: UIViewController {
     }
     
     // -------------------------------------------------------------------------
-    // MARK: - Life Cycle
+    // MARK: - UI Displays
     
     func displayRatingImage(for rating: Double) -> UIImage {
         var ratingImage: UIImage {
