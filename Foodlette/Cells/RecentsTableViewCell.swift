@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol Favorable: class {
+    
+    func didTapFavoriteButton(for restaurant: Restaurant)
+}
+
 class RecentsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var recentNameLabel: UILabel!
@@ -15,9 +20,18 @@ class RecentsTableViewCell: UITableViewCell {
     @IBOutlet weak var recentDateLabel: UILabel!
     @IBOutlet weak var recentImageView: UIImageView!
     @IBOutlet weak var isFavoriteButton: UIButton!
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    var restaurant: Restaurant?
+    weak var delegate: Favorable?
+    
+    func setRestaurants(recent: Restaurant) {
+        restaurant = recent
     }
     
+    @IBAction func favoriteButtonTapped(_ sender: Any) {
+        if let restaurant = restaurant,
+            let delegate = delegate {
+            delegate.didTapFavoriteButton(for: restaurant)
+        }
+    }
 }

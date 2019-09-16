@@ -50,8 +50,6 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         tableView.dataSource = self
         tableView.delegate = self
         setupFetchedResultsController()
-        
-//        tableView.register(UINib.init(nibName: "RecentsTableViewCell", bundle: nil), forCellReuseIdentifier: "RecentsCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,6 +111,13 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
     }
 }
 
+extension RecentsViewController: Favorable {
+    
+    func didTapFavoriteButton(for restaurant: Restaurant) {
+        print(restaurant.isFavorite)
+    }
+}
+
 // -----------------------------------------------------------------------------
 // MARK: - TableView
 
@@ -137,7 +142,8 @@ extension RecentsViewController: UITableViewDataSource, UITableViewDelegate {
         if let date = recent.date {
             cell.recentDateLabel.text = dateFormatter.string(from: date)
         }
-
+        cell.setRestaurants(recent: recent)
+        cell.delegate = self
         return cell
     }
     

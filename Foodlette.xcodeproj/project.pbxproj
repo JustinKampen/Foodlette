@@ -126,8 +126,8 @@
 				D0CDD46723261AF20026F5A7 /* SlideOutAnimationController.swift */,
 				D0CDD46523261AD00026F5A7 /* BounceAnimcationController.swift */,
 				D0CDD4602326171B0026F5A7 /* DimmingPresentationController.swift */,
-				D0CDD462232618760026F5A7 /* GradientView.swift */,
 				D08407FA232C8A0900E9C3C8 /* FadeOutAnimationController.swift */,
+				D0CDD462232618760026F5A7 /* GradientView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
