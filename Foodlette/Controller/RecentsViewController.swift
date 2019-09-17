@@ -111,10 +111,15 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
     }
 }
 
-extension RecentsViewController: Favorable {
+extension RecentsViewController: RecentFavorable {
     
     func didTapFavoriteButton(for restaurant: Restaurant) {
-        print(restaurant.isFavorite)
+        if restaurant.isFavorite {
+            restaurant.isFavorite = false
+        } else {
+            restaurant.isFavorite = true
+        }
+        dataController.saveViewContext()
     }
 }
 
@@ -141,6 +146,9 @@ extension RecentsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.recentFilterSelectedLabel.text = recent.withFilter
         if let date = recent.date {
             cell.recentDateLabel.text = dateFormatter.string(from: date)
+        }
+        if recent.isFavorite {
+            cell.isFavoriteButton.setImage(#imageLiteral(resourceName: "filled-heart-50"), for: .normal)
         }
         cell.setRestaurants(recent: recent)
         cell.delegate = self

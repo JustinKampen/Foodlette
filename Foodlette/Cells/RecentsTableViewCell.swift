@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Favorable: class {
+protocol RecentFavorable: class {
     
     func didTapFavoriteButton(for restaurant: Restaurant)
 }
@@ -22,7 +22,7 @@ class RecentsTableViewCell: UITableViewCell {
     @IBOutlet weak var isFavoriteButton: UIButton!
     
     var restaurant: Restaurant?
-    weak var delegate: Favorable?
+    weak var delegate: RecentFavorable?
     
     func setRestaurants(recent: Restaurant) {
         restaurant = recent

@@ -234,6 +234,9 @@
                                                         <constraint firstAttribute="height" constant="35" id="h3H-Wz-uoX"/>
                                                     </constraints>
                                                     <state key="normal" image="open-heart-50"/>
+                                                    <connections>
+                                                        <action selector="isFavoriteButtonTapped:" destination="wAO-VQ-94Q" eventType="touchUpInside" id="Mro-XA-ct2"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -939,6 +942,6 @@
         <image name="small_5" width="82" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="07R-4H-wPC"/>
+        <segue reference="EPG-cU-GPb"/>
     </inferredMetricsTieBreakers>
 </document>

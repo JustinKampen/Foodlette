@@ -84,6 +84,19 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
     }   
 }
 
+extension FavoritesViewController: Favorable {
+    
+    func didTapFavoriteButton(for restaurant: Restaurant) {
+        if restaurant.isFavorite {
+            restaurant.isFavorite = false
+        } else {
+            restaurant.isFavorite = true
+        }
+        dataController.saveViewContext()
+    }
+}
+
+
 // -----------------------------------------------------------------------------
 // MARK: - TableView
 
@@ -105,7 +118,10 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
             if let imageDate = favorite.image {
                 cell.imageView?.image = UIImage(data: imageDate)
             }
+            cell.isFavoriteButton.setImage(#imageLiteral(resourceName: "filled-heart-50"), for: .normal)
         }
+        cell.setRestaurants(favorite: favorite)
+        cell.delegate = self
         return cell
     }
     
