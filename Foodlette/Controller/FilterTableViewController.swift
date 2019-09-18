@@ -1,83 +1,56 @@
 //
-//  FilterViewController.swift
+//  FilterTableViewController.swift
 //  Foodlette
 //
-//  Created by Justin Kampen on 6/27/19.
+//  Created by Justin on 9/18/19.
 //  Copyright © 2019 Justin Kampen. All rights reserved.
 //
 
 import UIKit
-import CoreData
 
-class FilterViewController: UIViewController, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate {
-    
-    // -------------------------------------------------------------------------
-    // MARK: - Outlets and Variables
-    
+class FilterTableViewController: UITableViewController {
+
+    @IBOutlet weak var filterImageView: UIImageView!
     @IBOutlet weak var filterNameTextField: UITextField!
     @IBOutlet weak var filterCategoryTextField: UITextField!
-    @IBOutlet weak var minRatingLabel: UILabel!
-    @IBOutlet weak var maxRatingLabel: UILabel!
-    @IBOutlet weak var minRatingStepper: UIStepper!
-    @IBOutlet weak var maxRatingStepper: UIStepper!
-    @IBOutlet weak var filterImageView: UIImageView!
-    @IBOutlet weak var cameraButton: UIBarButtonItem!
-    @IBOutlet weak var albumsButton: UIBarButtonItem!
+    @IBOutlet weak var filterMaxRatingLabel: UILabel!
+    @IBOutlet weak var filterMinRatingLabel: UILabel!
+    @IBOutlet weak var filterMaxRatingStepper: UIStepper!
+    @IBOutlet weak var filterMinRatingStepper: UIStepper!
     
     var dataController = DataController.shared
-    var minRating = 0.0
     var maxRating = 5.0
-    
-    // -------------------------------------------------------------------------
-    // MARK: - Life Cycle
+    var minRating = 1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Create Filter"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(handleSaveFilter))
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         filterNameTextField.delegate = self
         filterCategoryTextField.delegate = self
         applyRoundStylingFor(filterImageView)
     }
-    
-    // -------------------------------------------------------------------------
-    // MARK: - ImagePicker Setup
     
     func pickImageFrom(sourceType: UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.navigationBar.isTranslucent = false
 //        imagePicker.navigationBar.barTintColor = .foodletteBlue
         imagePicker.navigationBar.tintColor = .white
-        imagePicker.delegate = self
+        imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
         imagePicker.sourceType = sourceType
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
     }
     
-    // -------------------------------------------------------------------------
-    // MARK: - UI Functionality
+    @IBAction func maxRatingStepperTapped(_ sender: Any) {
+        maxRating = filterMaxRatingStepper.value
+        filterMaxRatingLabel.text = String(maxRating)
+    }
     
     @IBAction func minRatingStepperTapped(_ sender: Any) {
-        minRating = minRatingStepper.value
-        minRatingLabel.text = String(minRating)
+        minRating = filterMinRatingStepper.value
+        filterMinRatingLabel.text = String(minRating)
     }
-    
-    @IBAction func maxRatingStepperTapped(_ sender: Any) {
-        maxRating = maxRatingStepper.value
-        maxRatingLabel.text = String(maxRating)
-    }
-    
-    @IBAction func pickImageFromCamera(_ sender: Any) {
-        pickImageFrom(sourceType: .camera)
-    }
-    
-    @IBAction func pickImageFromAlbums(_ sender: Any) {
-        pickImageFrom(sourceType: .photoLibrary)
-    }
-    
-    // -------------------------------------------------------------------------
-    // MARK: - Saving Filter to Core Data
     
     @objc func handleSaveFilter() {
         if filterNameTextField.text == "" {
@@ -110,7 +83,7 @@ class FilterViewController: UIViewController, UINavigationControllerDelegate, NS
 // -----------------------------------------------------------------------------
 // MARK: - TextField Delegate
 
-extension FilterViewController: UITextFieldDelegate {
+extension FilterTableViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -121,7 +94,7 @@ extension FilterViewController: UITextFieldDelegate {
 // -----------------------------------------------------------------------------
 // MARK: - ImagePicker Delegate
 
-extension FilterViewController: UIImagePickerControllerDelegate {
+extension FilterTableViewController: UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {

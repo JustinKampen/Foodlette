@@ -24,6 +24,7 @@
 		D0250EAD22C5D6B600A966B9 /* YelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250EAC22C5D6B600A966B9 /* YelpModel.swift */; };
 		D0275F4022C6B9B80062F8D3 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0275F3F22C6B9B80062F8D3 /* DetailedViewController.swift */; };
 		D08407FB232C8A0900E9C3C8 /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08407FA232C8A0900E9C3C8 /* FadeOutAnimationController.swift */; };
+		D0852EDD2332B6B40058EF83 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0852EDC2332B6B40058EF83 /* FilterTableViewController.swift */; };
 		D08B12DA22C72B4600F84A97 /* DefaultFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B12D922C72B4600F84A97 /* DefaultFilter.swift */; };
 		D08B12DC22C73F8800F84A97 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B12DB22C73F8800F84A97 /* FilterCollectionViewCell.swift */; };
 		D08B12E222C73FFA00F84A97 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B12E122C73FFA00F84A97 /* FavoritesTableViewCell.swift */; };
@@ -55,6 +56,7 @@
 		D0250EAC22C5D6B600A966B9 /* YelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpModel.swift; sourceTree = "<group>"; };
 		D0275F3F22C6B9B80062F8D3 /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
 		D08407FA232C8A0900E9C3C8 /* FadeOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeOutAnimationController.swift; sourceTree = "<group>"; };
+		D0852EDC2332B6B40058EF83 /* FilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		D08B12D922C72B4600F84A97 /* DefaultFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFilter.swift; sourceTree = "<group>"; };
 		D08B12DB22C73F8800F84A97 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		D08B12E122C73FFA00F84A97 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				D0250E9B22C5D61200A966B9 /* FilterViewController.swift */,
 				D0250EA122C5D63A00A966B9 /* RecentsViewController.swift */,
 				D009AAE722C652720069594C /* FavoritesViewController.swift */,
+				D0852EDC2332B6B40058EF83 /* FilterTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				D0250E9622C5D59A00A966B9 /* YelpClient.swift in Sources */,
 				D0250EAD22C5D6B600A966B9 /* YelpModel.swift in Sources */,
 				D08B12E422C7400B00F84A97 /* RecentsTableViewCell.swift in Sources */,
+				D0852EDD2332B6B40058EF83 /* FilterTableViewController.swift in Sources */,
 				D0CDD4612326171B0026F5A7 /* DimmingPresentationController.swift in Sources */,
 				D08B12DC22C73F8800F84A97 /* FilterCollectionViewCell.swift in Sources */,
 				D0CDD46823261AF20026F5A7 /* SlideOutAnimationController.swift in Sources */,

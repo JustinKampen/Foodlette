@@ -8,21 +8,21 @@
 
 import UIKit
 
-extension UINavigationController {
-    override open var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-}
+//extension UINavigationController {
+//    override open var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
+//}
+//
+//extension UIImagePickerController {
+//    override open var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
+//}
 
-extension UIImagePickerController {
-    override open var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-}
-
-extension UIColor {
-    static let foodletteBlue = UIColor(red: 0/255, green: 150/255, blue: 255/255, alpha: 1.0)
-}
+//extension UIColor {
+//    static let foodletteBlue = UIColor(red: 0/255, green: 150/255, blue: 255/255, alpha: 1.0)
+//}
 
 
 // -----------------------------------------------------------------------------
