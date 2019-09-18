@@ -141,12 +141,15 @@ extension RecentsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recentsCell", for: indexPath) as! RecentsTableViewCell
         if let imageData = recent.image {
             cell.recentImageView?.image = UIImage(data: imageData)
+            cell.recentImageView.layer.cornerRadius = 5.0
         }
         cell.recentNameLabel.text = recent.name
         cell.recentFilterSelectedLabel.text = recent.withFilter
         if let date = recent.date {
             cell.recentDateLabel.text = dateFormatter.string(from: date)
         }
+        cell.recentRatingImageView.image = displayRatingImage(for: recent.rating)
+        cell.recentReviewCountLabel.text = recent.reviewCount
         if recent.isFavorite {
             cell.isFavoriteButton.setImage(#imageLiteral(resourceName: "filled-heart-50"), for: .normal)
         }
@@ -156,9 +159,6 @@ extension RecentsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        let restaurantToDelete = fetchedResultsController.object(at: indexPath)
-//        dataController.viewContext.delete(restaurantToDelete)
-//        dataController.saveViewContext()
         switch editingStyle {
         case .delete:
             deleteRecent(at: indexPath)

@@ -19,7 +19,12 @@ class RecentsTableViewCell: UITableViewCell {
     @IBOutlet weak var recentFilterSelectedLabel: UILabel!
     @IBOutlet weak var recentDateLabel: UILabel!
     @IBOutlet weak var recentImageView: UIImageView!
+    @IBOutlet weak var recentRatingImageView: UIImageView!
+    @IBOutlet weak var recentReviewCountLabel: UILabel!
     @IBOutlet weak var isFavoriteButton: UIButton!
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Favoriting
     
     var restaurant: Restaurant?
     weak var delegate: RecentFavorable?

@@ -25,6 +25,8 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
     
     fileprivate func setupFetchedResultsController() {
         let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
+        let predicate = NSPredicate(format: "isFavorite == %@", NSNumber(value: true))
+        fetchRequest.predicate = predicate
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -96,7 +98,6 @@ extension FavoritesViewController: Favorable {
     }
 }
 
-
 // -----------------------------------------------------------------------------
 // MARK: - TableView
 
@@ -115,8 +116,12 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath) as! FavoritesTableViewCell
         if favorite.isFavorite {
             cell.favoriteNameLabel.text = favorite.name
+            cell.favoriterestaurantCategoryLabel.text = favorite.category
+            cell.favoriteImageView.image = displayRatingImage(for: favorite.rating)
+            cell.favoriteReviewCountLabel.text = favorite.reviewCount
             if let imageDate = favorite.image {
-                cell.imageView?.image = UIImage(data: imageDate)
+                cell.favoriteImageView?.image = UIImage(data: imageDate)
+                cell.favoriteImageView.layer.cornerRadius = 5.0
             }
             cell.isFavoriteButton.setImage(#imageLiteral(resourceName: "filled-heart-50"), for: .normal)
         }

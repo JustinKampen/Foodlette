@@ -15,10 +15,15 @@ protocol Favorable: class {
 
 class FavoritesTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var favoriteNameLabel: UILabel!
-    @IBOutlet weak var favoriteCategoryLabel: UILabel!
     @IBOutlet weak var favoriteImageView: UIImageView!
+    @IBOutlet weak var favoriteNameLabel: UILabel!
+    @IBOutlet weak var favoriterestaurantCategoryLabel: UILabel!
+    @IBOutlet weak var favoriteRatingImageView: UIImageView!
+    @IBOutlet weak var favoriteReviewCountLabel: UILabel!
     @IBOutlet weak var isFavoriteButton: UIButton!
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Favoriting
     
     var restaurant: Restaurant?
     weak var delegate: Favorable?
@@ -33,6 +38,4 @@ class FavoritesTableViewCell: UITableViewCell {
             delegate.didTapFavoriteButton(for: restaurant)
         }
     }
-    
-    
 }
