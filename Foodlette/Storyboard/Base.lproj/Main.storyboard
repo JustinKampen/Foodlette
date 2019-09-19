@@ -441,7 +441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="km0-QZ-t2u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2852" y="860"/>
+            <point key="canvasLocation" x="2877" y="113"/>
         </scene>
         <!--Popup View Controller-->
         <scene sceneID="WDs-we-Kpt">
@@ -504,12 +504,12 @@
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gF-rJ-aa5">
                                         <rect key="frame" x="8" y="197" width="224" height="35"/>
-                                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.76086002588272095" green="0.21307682991027832" blue="0.18036162853240967" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="q4F-cb-O6V"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
-                                        <state key="normal" title="Play Foodlette?">
+                                        <state key="normal" title="Play?">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -522,8 +522,9 @@
                                             <constraint firstAttribute="width" constant="30" id="ApE-wA-yai"/>
                                             <constraint firstAttribute="height" constant="30" id="eo8-wM-0GS"/>
                                         </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="CloseButton">
-                                            <color key="titleColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="close" destination="gFh-gI-dfG" eventType="touchUpInside" id="Ktw-IA-PUe"/>
@@ -568,7 +569,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="648-1Q-4Ng" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1958" y="1600"/>
+            <point key="canvasLocation" x="1958" y="860"/>
         </scene>
         <!--Filter Table View Controller-->
         <scene sceneID="bik-fv-u2A">
@@ -775,7 +776,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rtx-Zr-wTk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2850.7246376811595" y="1599.7767857142856"/>
+            <point key="canvasLocation" x="1048" y="1600"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7i4-65-mYO">

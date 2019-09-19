@@ -61,7 +61,7 @@ class DetailedViewController: UIViewController {
     }
     
     // -------------------------------------------------------------------------
-    // MARK: - UI Displays
+    // MARK: - UI Display
     
     func displayRatingImage(for rating: Double) -> UIImage {
         var ratingImage: UIImage {
@@ -126,6 +126,9 @@ class DetailedViewController: UIViewController {
         mapView.addAnnotation(annotation)
         mapView.setRegion(region, animated: true)
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Save Restaurant to CoreData
     
     func saveDataFor(winner: Business) {
         let restaurant = Restaurant(context: dataController.viewContext)

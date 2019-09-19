@@ -54,6 +54,14 @@ class PopupViewController: UIViewController {
         updatePopupView()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        defaultFilterSelected = nil
+        createdFilterSelected = nil
+        foodletteWinner = nil
+        restaurant = nil
+    }
+    
     // -------------------------------------------------------------------------
     // MARK: - UI Functionality
     
@@ -70,6 +78,9 @@ class PopupViewController: UIViewController {
             showAlert(message: "There was an error selecting the winner. Please try again")
         }
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Filter Details
     
     func updatePopupView() {
         if defaultFilterSelected != nil {
@@ -97,6 +108,9 @@ class PopupViewController: UIViewController {
         }
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: - Select Winner
+    
     func selectWinnerFrom(data: [Business], minRating: Double = 1.0, maxRating: Double = 5.0) {
         for _ in data.indices {
             let winnerSelected = Int.random(in: 0...YelpModel.data.count - 1)
@@ -108,6 +122,9 @@ class PopupViewController: UIViewController {
             }
         }
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Perform Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? DetailedViewController {

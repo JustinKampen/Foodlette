@@ -21,7 +21,7 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
     var restaurant: Restaurant?
     
     // -------------------------------------------------------------------------
-    // MARK: - Fetching Data
+    // MARK: - Fetching CoreData
     
     fileprivate func setupFetchedResultsController() {
         let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
@@ -88,6 +88,9 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
         }
     }   
 }
+
+// -----------------------------------------------------------------------------
+// MARK: - Favorable Protocol
 
 extension FavoritesViewController: Favorable {
     

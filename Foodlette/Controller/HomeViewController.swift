@@ -32,7 +32,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
     var createdFilterSelected: Filter?
     
     // -------------------------------------------------------------------------
-    // MARK: - Fetching Data
+    // MARK: - Fetching CoreData
     
     fileprivate func setupFetchedResultsController() {
         let fetchRequest: NSFetchRequest<Filter> = Filter.fetchRequest()

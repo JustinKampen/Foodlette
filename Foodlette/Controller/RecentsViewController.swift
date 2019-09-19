@@ -27,7 +27,7 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
     var restaurant: Restaurant?
     
     // -------------------------------------------------------------------------
-    // MARK: - Fetching Data
+    // MARK: - Fetching CoreData
 
     fileprivate func setupFetchedResultsController() {
         let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
@@ -62,9 +62,9 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         super.viewWillDisappear(animated)
         fetchedResultsController = nil
     }
-
+    
     // -------------------------------------------------------------------------
-    // MARK: - UI Functionality
+    // MARK: - UI Display
     
     func displayRatingImage(for rating: Double) -> UIImage {
         var ratingImage: UIImage {
@@ -85,6 +85,9 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         }
         return ratingImage
     }
+
+    // -------------------------------------------------------------------------
+    // MARK: - UI Functionality
     
     func deleteRecent(at indexPath: IndexPath) {
         let recentToDelete = fetchedResultsController.object(at: indexPath)
@@ -110,6 +113,9 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         }
     }
 }
+
+// -----------------------------------------------------------------------------
+// MARK: - Favorable Protocol
 
 extension RecentsViewController: RecentFavorable {
     
