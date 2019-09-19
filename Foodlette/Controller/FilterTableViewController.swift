@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class FilterTableViewController: UITableViewController {
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Outlets and Variables
 
     @IBOutlet weak var filterImageView: UIImageView!
     @IBOutlet weak var filterNameTextField: UITextField!
@@ -22,25 +26,22 @@ class FilterTableViewController: UITableViewController {
     var maxRating = 5.0
     var minRating = 1.0
     
+    // -------------------------------------------------------------------------
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Create Filter"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(handleSaveFilter))
+        navigationItem.rightBarButtonItem?.tintColor = .black
         filterNameTextField.delegate = self
         filterCategoryTextField.delegate = self
         applyRoundStylingFor(filterImageView)
+        setupImageView()
     }
     
-    func pickImageFrom(sourceType: UIImagePickerController.SourceType) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.navigationBar.isTranslucent = false
-//        imagePicker.navigationBar.barTintColor = .foodletteBlue
-        imagePicker.navigationBar.tintColor = .white
-        imagePicker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-        imagePicker.sourceType = sourceType
-        imagePicker.allowsEditing = true
-        present(imagePicker, animated: true, completion: nil)
-    }
+    // -------------------------------------------------------------------------
+    // MARK: - Life Cycle
     
     @IBAction func maxRatingStepperTapped(_ sender: Any) {
         maxRating = filterMaxRatingStepper.value
@@ -50,6 +51,28 @@ class FilterTableViewController: UITableViewController {
     @IBAction func minRatingStepperTapped(_ sender: Any) {
         minRating = filterMinRatingStepper.value
         filterMinRatingLabel.text = String(minRating)
+    }
+    
+    // -------------------------------------------------------------------------
+    // MARK: - UI Functionality
+    
+    func setupImageView() {
+        filterImageView.isUserInteractionEnabled = true
+        filterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectImage)))
+    }
+    
+    @objc func handleSelectImage() {
+        pickImageFrom()
+    }
+    
+    func pickImageFrom() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.navigationBar.barTintColor = UIColor(red: 249.0/255.0, green: 249.0/255.0, blue: 249.0/255.0, alpha: 1.0)
+        imagePickerController.navigationBar.isTranslucent = false
+        imagePickerController.navigationBar.tintColor = .black
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true, completion: nil)
     }
     
     @objc func handleSaveFilter() {
@@ -94,7 +117,7 @@ extension FilterTableViewController: UITextFieldDelegate {
 // -----------------------------------------------------------------------------
 // MARK: - ImagePicker Delegate
 
-extension FilterTableViewController: UIImagePickerControllerDelegate {
+extension FilterTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {

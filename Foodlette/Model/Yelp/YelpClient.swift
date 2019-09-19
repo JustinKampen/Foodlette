@@ -45,7 +45,6 @@ class YelpClient {
             do {
                 let businessData = try decoder.decode(YelpResponse.self, from: data)
                 completion(businessData.businesses, nil)
-                print(businessData.businesses)
             } catch {
                 completion(nil, error)
                 debugPrint(error.localizedDescription)

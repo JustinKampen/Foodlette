@@ -58,6 +58,9 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
         fetchedResultsController = nil
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: - UI Functionality
+    
     func displayRatingImage(for rating: Double) -> UIImage {
         var ratingImage: UIImage {
             switch rating {
@@ -117,7 +120,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         if favorite.isFavorite {
             cell.favoriteNameLabel.text = favorite.name
             cell.favoriterestaurantCategoryLabel.text = favorite.category
-            cell.favoriteImageView.image = displayRatingImage(for: favorite.rating)
+            cell.favoriteRatingImageView.image = displayRatingImage(for: favorite.rating)
             cell.favoriteReviewCountLabel.text = favorite.reviewCount
             if let imageDate = favorite.image {
                 cell.favoriteImageView?.image = UIImage(data: imageDate)

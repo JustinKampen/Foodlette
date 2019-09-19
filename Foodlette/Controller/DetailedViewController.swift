@@ -39,6 +39,7 @@ class DetailedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         mapView.delegate = self
         if let foodletteWinner = foodletteWinner {
             displayInformationFor(winner: foodletteWinner)
@@ -135,6 +136,7 @@ class DetailedViewController: UIViewController {
         restaurant.rating = winner.rating
         restaurant.reviewCount = "\(String(describing: winner.reviewCount)) Reviews"
         restaurant.date = Date()
+        restaurant.isFavorite = false
         if let winnerImage = restaurantImageView.image {
             let imageData = winnerImage.jpegData(compressionQuality: 0.8)
             restaurant.image = imageData

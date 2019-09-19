@@ -152,6 +152,8 @@ extension RecentsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.recentReviewCountLabel.text = recent.reviewCount
         if recent.isFavorite {
             cell.isFavoriteButton.setImage(#imageLiteral(resourceName: "filled-heart-50"), for: .normal)
+        } else {
+            cell.isFavoriteButton.setImage(#imageLiteral(resourceName: "open-heart-50"), for: .normal)
         }
         cell.setRestaurants(recent: recent)
         cell.delegate = self

@@ -15,7 +15,6 @@
 		D0250E8C22C5D58300A966B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0250E8A22C5D58300A966B9 /* LaunchScreen.storyboard */; };
 		D0250E9422C5D59100A966B9 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250E9322C5D59100A966B9 /* DataController.swift */; };
 		D0250E9622C5D59A00A966B9 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250E9522C5D59A00A966B9 /* YelpClient.swift */; };
-		D0250E9C22C5D61200A966B9 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250E9B22C5D61200A966B9 /* FilterViewController.swift */; };
 		D0250EA022C5D62A00A966B9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250E9F22C5D62A00A966B9 /* HomeViewController.swift */; };
 		D0250EA222C5D63A00A966B9 /* RecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250EA122C5D63A00A966B9 /* RecentsViewController.swift */; };
 		D0250EA622C5D68000A966B9 /* YelpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250EA522C5D68000A966B9 /* YelpResponse.swift */; };
@@ -47,7 +46,6 @@
 		D0250E8D22C5D58300A966B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0250E9322C5D59100A966B9 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		D0250E9522C5D59A00A966B9 /* YelpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
-		D0250E9B22C5D61200A966B9 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		D0250E9F22C5D62A00A966B9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D0250EA122C5D63A00A966B9 /* RecentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsViewController.swift; sourceTree = "<group>"; };
 		D0250EA522C5D68000A966B9 /* YelpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpResponse.swift; sourceTree = "<group>"; };
@@ -149,12 +147,11 @@
 			isa = PBXGroup;
 			children = (
 				D0250E9F22C5D62A00A966B9 /* HomeViewController.swift */,
+				D0852EDC2332B6B40058EF83 /* FilterTableViewController.swift */,
 				D0CDD45E2325E39B0026F5A7 /* PopupViewController.swift */,
 				D0275F3F22C6B9B80062F8D3 /* DetailedViewController.swift */,
-				D0250E9B22C5D61200A966B9 /* FilterViewController.swift */,
 				D0250EA122C5D63A00A966B9 /* RecentsViewController.swift */,
 				D009AAE722C652720069594C /* FavoritesViewController.swift */,
-				D0852EDC2332B6B40058EF83 /* FilterTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -294,7 +291,6 @@
 				D009AAE822C652720069594C /* FavoritesViewController.swift in Sources */,
 				D0CDD463232618760026F5A7 /* GradientView.swift in Sources */,
 				D0250EA622C5D68000A966B9 /* YelpResponse.swift in Sources */,
-				D0250E9C22C5D61200A966B9 /* FilterViewController.swift in Sources */,
 				D0250E9622C5D59A00A966B9 /* YelpClient.swift in Sources */,
 				D0250EAD22C5D6B600A966B9 /* YelpModel.swift in Sources */,
 				D08B12E422C7400B00F84A97 /* RecentsTableViewCell.swift in Sources */,
