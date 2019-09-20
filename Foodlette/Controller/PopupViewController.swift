@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class PopupViewController: UIViewController {
+class PopupViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     // -------------------------------------------------------------------------
     // MARK: - Outlets and Variables
@@ -27,17 +28,37 @@ class PopupViewController: UIViewController {
     }
     
     var dismissStyle = AnimationStyle.fade
+    var dataController = DataController.shared
+    var fetchedResultsController: NSFetchedResultsController<Restaurant>!
+    var favorites: [Restaurant]?
     var defaultFilterSelected: DefaultFilter?
     var favoritesFilterSelected: DefaultFilter?
     var createdFilterSelected: Filter?
     var foodletteWinner: Business?
-    var restaurant: Restaurant?
-    var dataController = DataController.shared
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         modalPresentationStyle = .custom
         transitioningDelegate = self
+    }
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Fetching CoreData
+    
+    fileprivate func setupFetchedResultsController() {
+        let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
+        let predicate = NSPredicate(format: "isFavorite == %@", NSNumber(value: true))
+        fetchRequest.predicate = predicate
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+            favorites = fetchedResultsController.fetchedObjects ?? []
+        } catch {
+            fatalError("The fetch could not be performed: \(error.localizedDescription)")
+        }
     }
     
     // -------------------------------------------------------------------------
@@ -61,7 +82,7 @@ class PopupViewController: UIViewController {
         createdFilterSelected = nil
         favoritesFilterSelected = nil
         foodletteWinner = nil
-        restaurant = nil
+//        restaurant = nil
     }
     
     // -------------------------------------------------------------------------
@@ -112,6 +133,11 @@ class PopupViewController: UIViewController {
     
     // -------------------------------------------------------------------------
     // MARK: - Select Winner for Filter
+    
+    func selectWinnerFrom(favorites: [Restaurant]) {
+        // TODO: - mark winner from favorites
+        showAlert(message: "There is currently no restaurants marked as favorite")
+    }
     
     func selectWinnerFrom(data: [Business], minRating: Double = 1.0, maxRating: Double = 5.0) {
         for _ in data.indices {
