@@ -17,6 +17,7 @@ class FilterTableViewController: UITableViewController {
     @IBOutlet weak var filterImageView: UIImageView!
     @IBOutlet weak var filterNameTextField: UITextField!
     @IBOutlet weak var filterCategoryTextField: UITextField!
+    @IBOutlet weak var filterNarrativeTextField: UITextField!
     @IBOutlet weak var filterMaxRatingLabel: UILabel!
     @IBOutlet weak var filterMinRatingLabel: UILabel!
     @IBOutlet weak var filterMaxRatingStepper: UIStepper!
@@ -36,6 +37,7 @@ class FilterTableViewController: UITableViewController {
         navigationItem.rightBarButtonItem?.tintColor = .black
         filterNameTextField.delegate = self
         filterCategoryTextField.delegate = self
+        filterNarrativeTextField.delegate = self
         applyRoundStylingFor(filterImageView)
         setupImageView()
     }
@@ -88,11 +90,15 @@ class FilterTableViewController: UITableViewController {
         }
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: - Save Filter Details to CoreData
+    
     func saveFilterData() {
         let filter = Filter(context: dataController.viewContext)
         filter.name = filterNameTextField.text
         let category = filterNameTextField.text?.replacingOccurrences(of: " ", with: "")
         filter.category = category
+        filter.narrative = filterNarrativeTextField.text
         filter.minRating = minRating
         filter.maxRating = maxRating
         if let filterImage = filterImageView.image {

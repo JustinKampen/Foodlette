@@ -28,6 +28,7 @@ class PopupViewController: UIViewController {
     
     var dismissStyle = AnimationStyle.fade
     var defaultFilterSelected: DefaultFilter?
+    var favoritesFilterSelected: DefaultFilter?
     var createdFilterSelected: Filter?
     var foodletteWinner: Business?
     var restaurant: Restaurant?
@@ -58,6 +59,7 @@ class PopupViewController: UIViewController {
         super.viewDidDisappear(animated)
         defaultFilterSelected = nil
         createdFilterSelected = nil
+        favoritesFilterSelected = nil
         foodletteWinner = nil
         restaurant = nil
     }
@@ -80,7 +82,7 @@ class PopupViewController: UIViewController {
     }
     
     // -------------------------------------------------------------------------
-    // MARK: - Filter Details
+    // MARK: - Display Filter Details
     
     func updatePopupView() {
         if defaultFilterSelected != nil {
@@ -109,7 +111,7 @@ class PopupViewController: UIViewController {
     }
     
     // -------------------------------------------------------------------------
-    // MARK: - Select Winner
+    // MARK: - Select Winner for Filter
     
     func selectWinnerFrom(data: [Business], minRating: Double = 1.0, maxRating: Double = 5.0) {
         for _ in data.indices {

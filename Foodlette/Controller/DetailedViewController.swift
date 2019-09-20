@@ -39,7 +39,6 @@ class DetailedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         mapView.delegate = self
         if let foodletteWinner = foodletteWinner {
             displayInformationFor(winner: foodletteWinner)
@@ -128,7 +127,7 @@ class DetailedViewController: UIViewController {
     }
     
     // -------------------------------------------------------------------------
-    // MARK: - Save Restaurant to CoreData
+    // MARK: - Save Restaurant Details to CoreData
     
     func saveDataFor(winner: Business) {
         let restaurant = Restaurant(context: dataController.viewContext)

@@ -59,7 +59,7 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
     }
     
     // -------------------------------------------------------------------------
-    // MARK: - UI Functionality
+    // MARK: - UI Display
     
     func displayRatingImage(for rating: Double) -> UIImage {
         var ratingImage: UIImage {
@@ -80,6 +80,9 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
         }
         return ratingImage
     }
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Show Restraunt Details Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "favoriteDetail" {
@@ -120,17 +123,27 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let favorite = fetchedResultsController.object(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath) as! FavoritesTableViewCell
-        if favorite.isFavorite {
-            cell.favoriteNameLabel.text = favorite.name
-            cell.favoriterestaurantCategoryLabel.text = favorite.category
-            cell.favoriteRatingImageView.image = displayRatingImage(for: favorite.rating)
-            cell.favoriteReviewCountLabel.text = favorite.reviewCount
-            if let imageDate = favorite.image {
-                cell.favoriteImageView?.image = UIImage(data: imageDate)
-                cell.favoriteImageView.layer.cornerRadius = 5.0
-            }
-            cell.isFavoriteButton.setImage(#imageLiteral(resourceName: "filled-heart-50"), for: .normal)
+        cell.favoriteNameLabel.text = favorite.name
+        cell.favoriterestaurantCategoryLabel.text = favorite.category
+        cell.favoriteRatingImageView.image = displayRatingImage(for: favorite.rating)
+        cell.favoriteReviewCountLabel.text = favorite.reviewCount
+        if let imageDate = favorite.image {
+            cell.favoriteImageView?.image = UIImage(data: imageDate)
+            cell.favoriteImageView.layer.cornerRadius = 5.0
         }
+        cell.isFavoriteButton.setImage(#imageLiteral(resourceName: "filled-heart-50"), for: .normal)
+    
+//        if favorite.isFavorite {
+//            cell.favoriteNameLabel.text = favorite.name
+//            cell.favoriterestaurantCategoryLabel.text = favorite.category
+//            cell.favoriteRatingImageView.image = displayRatingImage(for: favorite.rating)
+//            cell.favoriteReviewCountLabel.text = favorite.reviewCount
+//            if let imageDate = favorite.image {
+//                cell.favoriteImageView?.image = UIImage(data: imageDate)
+//                cell.favoriteImageView.layer.cornerRadius = 5.0
+//            }
+//            cell.isFavoriteButton.setImage(#imageLiteral(resourceName: "filled-heart-50"), for: .normal)
+//        }
         cell.setRestaurants(favorite: favorite)
         cell.delegate = self
         return cell
@@ -141,6 +154,9 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         performSegue(withIdentifier: "favoriteDetail", sender: nil)
     }
 }
+
+// -----------------------------------------------------------------------------
+// MARK: - Fetched Results Controller
 
 extension FavoritesViewController {
     

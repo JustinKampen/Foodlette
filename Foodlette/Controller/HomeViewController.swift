@@ -29,6 +29,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
     var longitude = 0.0
     var fetchedFilterArray: [Filter] = []
     var defaultFilterSelected: DefaultFilter?
+    var favoritesFilterSelected: DefaultFilter?
     var createdFilterSelected: Filter?
     
     // -------------------------------------------------------------------------
@@ -172,12 +173,13 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
     }
     
     // -------------------------------------------------------------------------
-    // MARK: - Select Foodlette Winner
+    // MARK: - Segue to Foodlette Winner Selection
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? PopupViewController {
             controller.defaultFilterSelected = defaultFilterSelected
             controller.createdFilterSelected = createdFilterSelected
+            controller.favoritesFilterSelected = favoritesFilterSelected
         }
     }
 }
@@ -234,6 +236,12 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             let filter = defaultFilter[indexPath.row]
             defaultFilterSelected = filter
             activityIndicator(isAnimating: true, indexPath: indexPath)
+            if filter.favorites == true {
+                self.activityIndicator(isAnimating: false, indexPath: indexPath)
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "showPopup", sender: nil)
+                }
+            }
             YelpClient.getBusinessDataFor(categories: filter.category ?? "all", latitude: String(latitude), longitude: String(longitude)) { (business, error) in
                 guard let business = business else {
                     self.showAlert(message: "Could not load restaurant data. Please check your network connection")

@@ -106,6 +106,9 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         tableView.setEditing(editing, animated: animated)
     }
     
+    // -------------------------------------------------------------------------
+    // MARK: - Show Restraunt Details Segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "recentDetail" {
             let controller = segue.destination as! DetailedViewController
