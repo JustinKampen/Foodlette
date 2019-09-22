@@ -25,7 +25,7 @@ class FilterTableViewController: UITableViewController {
     
     var dataController = DataController.shared
     var maxRating = 5.0
-    var minRating = 1.0
+    var minRating = 3.0
     
     // -------------------------------------------------------------------------
     // MARK: - Life Cycle
