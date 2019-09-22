@@ -21,7 +21,7 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         df.dateStyle = .short
         return df
     }()
-    
+    let searchController = UISearchController(searchResultsController: nil)
     var dataController = DataController.shared
     var fetchedResultsController: NSFetchedResultsController<Restaurant>!
     var restaurant: Restaurant?
