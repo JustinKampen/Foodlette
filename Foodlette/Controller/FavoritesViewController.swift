@@ -16,9 +16,12 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
     
     @IBOutlet weak var tableView: UITableView!
     
+    let searchController = UISearchController(searchResultsController: nil)
     var dataController = DataController.shared
     var fetchedResultsController: NSFetchedResultsController<Restaurant>!
     var restaurant: Restaurant?
+    var favorites = [Restaurant]()
+    var searchedFavorites = [Restaurant]()
     
     // -------------------------------------------------------------------------
     // MARK: - Fetching CoreData
@@ -33,6 +36,7 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
+            favorites = fetchedResultsController.fetchedObjects ?? []
         } catch {
             fatalError("The fetch could not be performed: \(error.localizedDescription)")
         }
@@ -45,6 +49,8 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        setupFetchedResultsController()
+        setupSearchBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,6 +88,38 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
     }
     
     // -------------------------------------------------------------------------
+    // MARK: - Search Bar Functionality
+    
+    func setupSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Recents"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        searchController.searchBar.delegate = self
+        let offset = CGPoint.init(x:0, y: searchController.searchBar.bounds.height)
+        tableView.setContentOffset(offset, animated: false)
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        searchedFavorites = favorites.filter({( restaurant : Restaurant) -> Bool in
+            if let restaurantName = restaurant.name {
+                return restaurantName.lowercased().contains(searchText.lowercased())
+            }
+            return false
+        })
+        tableView.reloadData()
+    }
+
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+
+    func isSearching() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
+    // -------------------------------------------------------------------------
     // MARK: - Show Restraunt Details Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,16 +151,27 @@ extension FavoritesViewController: Favorable {
 extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if isSearching() {
+            return searchedFavorites.count
+        }
         return fetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearching() {
+            return searchedFavorites.count
+        }
         return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let favorite = fetchedResultsController.object(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath) as! FavoritesTableViewCell
+        let favorite: Restaurant
+        if isSearching() {
+            favorite = searchedFavorites[indexPath.row]
+        } else {
+            favorite = fetchedResultsController.object(at: indexPath)
+        }
         cell.favoriteNameLabel.text = favorite.name
         cell.favoriterestaurantCategoryLabel.text = favorite.category
         cell.favoriteRatingImageView.image = displayRatingImage(for: favorite.rating)
@@ -132,18 +181,6 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
             cell.favoriteImageView.layer.cornerRadius = 5.0
         }
         cell.isFavoriteButton.setImage(#imageLiteral(resourceName: "filled-heart-50"), for: .normal)
-    
-//        if favorite.isFavorite {
-//            cell.favoriteNameLabel.text = favorite.name
-//            cell.favoriterestaurantCategoryLabel.text = favorite.category
-//            cell.favoriteRatingImageView.image = displayRatingImage(for: favorite.rating)
-//            cell.favoriteReviewCountLabel.text = favorite.reviewCount
-//            if let imageDate = favorite.image {
-//                cell.favoriteImageView?.image = UIImage(data: imageDate)
-//                cell.favoriteImageView.layer.cornerRadius = 5.0
-//            }
-//            cell.isFavoriteButton.setImage(#imageLiteral(resourceName: "filled-heart-50"), for: .normal)
-//        }
         cell.setRestaurants(favorite: favorite)
         cell.delegate = self
         return cell
@@ -170,5 +207,22 @@ extension FavoritesViewController {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+}
+
+// -----------------------------------------------------------------------------
+// MARK: - Search Results Updating
+
+extension FavoritesViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+
+extension FavoritesViewController: UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        setupSearchBar()
     }
 }

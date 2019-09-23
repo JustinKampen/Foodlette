@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
     var fetchedResultsController: NSFetchedResultsController<Filter>!
     var latitude = 0.0
     var longitude = 0.0
-    var fetchedFilterArray: [Filter] = []
+    var fetchedFilterArray = [Filter]()
     var defaultFilterSelected: DefaultFilter?
     var favoritesFilterSelected: DefaultFilter?
     var createdFilterSelected: Filter?

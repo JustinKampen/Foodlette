@@ -25,6 +25,8 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
     var dataController = DataController.shared
     var fetchedResultsController: NSFetchedResultsController<Restaurant>!
     var restaurant: Restaurant?
+    var recents = [Restaurant]()
+    var searchedRecents = [Restaurant]()
     
     // -------------------------------------------------------------------------
     // MARK: - Fetching CoreData
@@ -37,6 +39,7 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
+            recents = fetchedResultsController.fetchedObjects ?? []
         } catch {
             fatalError("The fetch could not be performed: \(error.localizedDescription)")
         }
@@ -50,6 +53,7 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         tableView.dataSource = self
         tableView.delegate = self
         setupFetchedResultsController()
+        setupSearchBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +90,38 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         return ratingImage
     }
 
+    // -------------------------------------------------------------------------
+    // MARK: - Search Bar Functionality
+    
+    func setupSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Recents"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        searchController.searchBar.delegate = self
+        let offset = CGPoint.init(x:0, y: searchController.searchBar.bounds.height)
+        tableView.setContentOffset(offset, animated: false)
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        searchedRecents = recents.filter({( restaurant : Restaurant) -> Bool in
+            if let restaurantName = restaurant.name {
+                return restaurantName.lowercased().contains(searchText.lowercased())
+            }
+            return false
+        })
+        tableView.reloadData()
+    }
+
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+
+    func isSearching() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
     // -------------------------------------------------------------------------
     // MARK: - UI Functionality
     
@@ -138,16 +174,27 @@ extension RecentsViewController: RecentFavorable {
 extension RecentsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if isSearching() {
+            return searchedRecents.count
+        }
         return fetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearching() {
+            return searchedRecents.count
+        }
         return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let recent = fetchedResultsController.object(at: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "recentsCell", for: indexPath) as! RecentsTableViewCell
+        let recent: Restaurant
+        if isSearching() {
+            recent = searchedRecents[indexPath.row]
+        } else {
+            recent = fetchedResultsController.object(at: indexPath)
+        }
         if let imageData = recent.image {
             cell.recentImageView?.image = UIImage(data: imageData)
             cell.recentImageView.layer.cornerRadius = 5.0
@@ -212,5 +259,22 @@ extension RecentsViewController {
         @unknown default:
             ()
         }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// MARK: - Search Results Updating
+
+extension RecentsViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+
+extension RecentsViewController: UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        setupSearchBar()
     }
 }
