@@ -94,12 +94,13 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
     // MARK: - Search Bar Functionality
     
     func setupSearchBar() {
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.searchBarStyle = .minimal
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Recents"
-        navigationItem.searchController = searchController
         definesPresentationContext = true
-        searchController.searchBar.delegate = self
         let offset = CGPoint.init(x:0, y: searchController.searchBar.bounds.height)
         tableView.setContentOffset(offset, animated: false)
     }
@@ -275,6 +276,6 @@ extension RecentsViewController: UISearchResultsUpdating {
 extension RecentsViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        setupSearchBar()
+//        setupSearchBar()
     }
 }
