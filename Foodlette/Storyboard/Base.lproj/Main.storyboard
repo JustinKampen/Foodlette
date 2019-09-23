@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="weJ-C7-Li9">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
+                                <rect key="frame" x="0.0" y="132" width="414" height="681"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MPY-y5-TzC">
                                     <size key="itemSize" width="194" height="250"/>
@@ -101,13 +101,13 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ze-xf-kdJ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="52"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jbv-5R-ID8">
-                                        <rect key="frame" x="8" y="16" width="398" height="29"/>
+                                        <rect key="frame" x="8" y="8" width="398" height="29"/>
                                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="28" id="PtI-Ny-CyY"/>
+                                            <constraint firstAttribute="height" constant="28" id="Rdz-HC-vEZ"/>
                                         </constraints>
                                         <segments>
                                             <segment title="Home"/>
@@ -121,10 +121,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="jbv-5R-ID8" secondAttribute="trailing" constant="8" id="5BC-7s-b3r"/>
-                                    <constraint firstAttribute="height" constant="52" id="LOm-dR-fl2"/>
-                                    <constraint firstItem="jbv-5R-ID8" firstAttribute="leading" secondItem="9ze-xf-kdJ" secondAttribute="leading" constant="8" id="NI7-8i-5q2"/>
-                                    <constraint firstItem="jbv-5R-ID8" firstAttribute="top" secondItem="9ze-xf-kdJ" secondAttribute="top" constant="16" id="Xay-ik-4HP"/>
+                                    <constraint firstItem="jbv-5R-ID8" firstAttribute="leading" secondItem="9ze-xf-kdJ" secondAttribute="leading" constant="8" id="9mZ-I1-koX"/>
+                                    <constraint firstAttribute="height" constant="44" id="LOm-dR-fl2"/>
+                                    <constraint firstAttribute="trailing" secondItem="jbv-5R-ID8" secondAttribute="trailing" constant="8" id="MlC-ky-RLT"/>
+                                    <constraint firstItem="jbv-5R-ID8" firstAttribute="centerY" secondItem="9ze-xf-kdJ" secondAttribute="centerY" id="hn2-s9-dRC"/>
                                 </constraints>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ft-rm-t3D">
@@ -170,6 +170,7 @@
                         <outlet property="collectionView" destination="weJ-C7-Li9" id="320-ay-q6k"/>
                         <outlet property="createFilterButton" destination="dfj-20-7IS" id="UkP-rB-9sn"/>
                         <outlet property="flowLayout" destination="MPY-y5-TzC" id="Otd-Wu-jUH"/>
+                        <outlet property="segmentedView" destination="9ze-xf-kdJ" id="wOk-vQ-H5A"/>
                         <outlet property="toolbar" destination="9ft-rm-t3D" id="oSN-hl-hof"/>
                         <outlet property="typeFilterSegmentedControl" destination="jbv-5R-ID8" id="eIO-m1-Hj6"/>
                         <segue destination="gFh-gI-dfG" kind="presentation" identifier="showPopup" id="IV2-nB-7Rz"/>
@@ -399,11 +400,14 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Restaurant Details" id="hob-6A-tKv">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="dpO-1s-dI5">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="dpO-1s-dI5">
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <action selector="closeButtonTapped:" destination="yoe-Sf-Cjp" id="JL8-TA-aGv"/>
                                             </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="4UC-tw-fV3">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -455,7 +459,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZAu-kK-ojd">
                                 <rect key="frame" x="87" y="301" width="240" height="240"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t7M-zc-nUV">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="asparagus-barbecue-bbq" translatesAutoresizingMaskIntoConstraints="NO" id="t7M-zc-nUV">
                                         <rect key="frame" x="81" y="8" width="78" height="96"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="96" id="4t1-x5-JCu"/>
@@ -518,10 +522,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNA-Np-bW6">
-                                        <rect key="frame" x="210" y="0.0" width="30" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="ApE-wA-yai"/>
-                                            <constraint firstAttribute="height" constant="30" id="eo8-wM-0GS"/>
+                                            <constraint firstAttribute="height" constant="30" id="QeQ-ke-Pfw"/>
+                                            <constraint firstAttribute="width" constant="30" id="ZXn-7x-eo4"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="CloseButton">
@@ -540,11 +544,11 @@
                                     <constraint firstAttribute="trailing" secondItem="0gF-rJ-aa5" secondAttribute="trailing" constant="8" id="BnV-0L-gup"/>
                                     <constraint firstItem="TNY-Se-eTn" firstAttribute="leading" secondItem="ZAu-kK-ojd" secondAttribute="leading" constant="8" id="Ehr-r9-h0z"/>
                                     <constraint firstAttribute="height" constant="240" id="OAS-hi-syK"/>
-                                    <constraint firstItem="gNA-Np-bW6" firstAttribute="top" secondItem="ZAu-kK-ojd" secondAttribute="top" id="Pti-Nk-TAg"/>
                                     <constraint firstItem="t7M-zc-nUV" firstAttribute="top" secondItem="ZAu-kK-ojd" secondAttribute="top" constant="8" id="SWM-07-F6l"/>
                                     <constraint firstAttribute="trailing" secondItem="TNY-Se-eTn" secondAttribute="trailing" constant="8" id="TEB-14-gB1"/>
+                                    <constraint firstItem="gNA-Np-bW6" firstAttribute="leading" secondItem="ZAu-kK-ojd" secondAttribute="leading" id="WiS-J3-Gkz"/>
                                     <constraint firstItem="TNY-Se-eTn" firstAttribute="top" secondItem="t7M-zc-nUV" secondAttribute="bottom" constant="8" id="byl-DE-s5K"/>
-                                    <constraint firstAttribute="trailing" secondItem="gNA-Np-bW6" secondAttribute="trailing" id="c4e-bz-GpX"/>
+                                    <constraint firstItem="gNA-Np-bW6" firstAttribute="top" secondItem="ZAu-kK-ojd" secondAttribute="top" id="j5w-Xs-Pwg"/>
                                     <constraint firstAttribute="bottom" secondItem="0gF-rJ-aa5" secondAttribute="bottom" constant="8" id="sJR-8X-qVS"/>
                                     <constraint firstItem="t7M-zc-nUV" firstAttribute="centerX" secondItem="ZAu-kK-ojd" secondAttribute="centerX" id="yRm-qH-2B9"/>
                                 </constraints>
@@ -1045,6 +1049,6 @@
         <image name="small_5" width="82" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EPG-cU-GPb"/>
+        <segue reference="cdr-cP-jmY"/>
     </inferredMetricsTieBreakers>
 </document>

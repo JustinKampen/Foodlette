@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
     // MARK: - Outlets and Variables
     
     @IBOutlet weak var createFilterButton: UIBarButtonItem!
+    @IBOutlet weak var segmentedView: UIView!
     @IBOutlet weak var typeFilterSegmentedControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
@@ -54,6 +55,9 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.layoutIfNeeded()
         collectionView.dataSource = self
         collectionView.delegate = self
         setupCollectionViewCells()
