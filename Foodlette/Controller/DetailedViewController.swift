@@ -27,7 +27,6 @@ class DetailedViewController: UIViewController {
         df.dateStyle = .short
         return df
     }()
-    
     var dataController = DataController.shared
     var restaurant: Restaurant?
     var foodletteWinner: Business?

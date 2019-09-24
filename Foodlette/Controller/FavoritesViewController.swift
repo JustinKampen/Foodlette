@@ -56,6 +56,7 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupFetchedResultsController()
+        setupSearchBar()
         tableView.reloadData()
     }
     

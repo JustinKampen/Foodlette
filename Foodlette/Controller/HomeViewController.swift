@@ -217,7 +217,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 cell.filterImageView.image = filter.image
                 cell.filterNameLabel.text = filter.name
                 cell.filterNarrativeLabel.text = filter.narrative
-                applyRoundStylingFor(cell.filterImageView)
+                applyRoundStylingFor(view: cell.filterImageView)
                 cell.isEditing = isEditing
             case 1:
                 let filter = fetchedResultsController.object(at: indexPath)
@@ -226,7 +226,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 }
                 cell.filterNameLabel.text = filter.name
                 cell.filterNarrativeLabel.text = filter.narrative
-                applyRoundStylingFor(cell.filterImageView)
+                applyRoundStylingFor(view: cell.filterImageView)
                 cell.isEditing = isEditing
             default:
                 showAlert(message: "Error loading filters")

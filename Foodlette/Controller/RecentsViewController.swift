@@ -59,6 +59,7 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupFetchedResultsController()
+        setupSearchBar()
         tableView.reloadData()
     }
 
@@ -157,7 +158,7 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
 // -----------------------------------------------------------------------------
 // MARK: - Favorable Protocol
 
-extension RecentsViewController: RecentFavorable {
+extension RecentsViewController: Favorable {
     
     func didTapFavoriteButton(for restaurant: Restaurant) {
         if restaurant.isFavorite {
@@ -277,5 +278,6 @@ extension RecentsViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 //        setupSearchBar()
+        
     }
 }

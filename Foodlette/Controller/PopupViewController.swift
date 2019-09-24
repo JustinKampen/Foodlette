@@ -67,8 +67,9 @@ class PopupViewController: UIViewController, NSFetchedResultsControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
-        applyRoundStylingFor(filterPopupView)
-        applyRoundStylingFor(playButton)
+        applyRoundStylingFor(view: filterPopupView)
+        applyRoundStylingFor(button: playButton)
+        playButton.setGradientBackground(colorOne: Colors.darkRed, colorTwo: Colors.lightRed)
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
         gestureRecognizer.cancelsTouchesInView = false
         gestureRecognizer.delegate = self

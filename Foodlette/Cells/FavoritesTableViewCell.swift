@@ -8,10 +8,10 @@
 
 import UIKit
 
-protocol Favorable: class {
-    
-    func didTapFavoriteButton(for restaurant: Restaurant)
-}
+//protocol Favorable: class {
+//    
+//    func didTapFavoriteButton(for restaurant: Restaurant)
+//}
 
 class FavoritesTableViewCell: UITableViewCell {
     

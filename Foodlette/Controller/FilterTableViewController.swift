@@ -38,7 +38,7 @@ class FilterTableViewController: UITableViewController {
         filterNameTextField.delegate = self
         filterCategoryTextField.delegate = self
         filterNarrativeTextField.delegate = self
-        applyRoundStylingFor(filterImageView)
+        applyRoundStylingFor(view: filterImageView)
         setupImageView()
     }
     
@@ -69,7 +69,7 @@ class FilterTableViewController: UITableViewController {
     
     func pickImageFrom() {
         let imagePickerController = UIImagePickerController()
-        imagePickerController.navigationBar.barTintColor = UIColor(red: 249.0/255.0, green: 249.0/255.0, blue: 249.0/255.0, alpha: 1.0)
+        imagePickerController.navigationBar.barTintColor = Colors.defaultGray
         imagePickerController.navigationBar.isTranslucent = false
         imagePickerController.navigationBar.tintColor = .black
         imagePickerController.delegate = self

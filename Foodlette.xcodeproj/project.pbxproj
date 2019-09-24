@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D009AAE822C652720069594C /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D009AAE722C652720069594C /* FavoritesViewController.swift */; };
-		D01F5C3122C676A3006A0C46 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01F5C3022C676A3006A0C46 /* Extensions.swift */; };
 		D0250E8222C5D58300A966B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250E8122C5D58300A966B9 /* AppDelegate.swift */; };
 		D0250E8722C5D58300A966B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0250E8522C5D58300A966B9 /* Main.storyboard */; };
 		D0250E8922C5D58300A966B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0250E8822C5D58300A966B9 /* Assets.xcassets */; };
@@ -22,12 +21,16 @@
 		D0250EAB22C5D69B00A966B9 /* Foodlette.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0250EA922C5D69B00A966B9 /* Foodlette.xcdatamodeld */; };
 		D0250EAD22C5D6B600A966B9 /* YelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0250EAC22C5D6B600A966B9 /* YelpModel.swift */; };
 		D0275F4022C6B9B80062F8D3 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0275F3F22C6B9B80062F8D3 /* DetailedViewController.swift */; };
+		D0530D0A233987A20022611E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0530D09233987A20022611E /* Colors.swift */; };
 		D08407FB232C8A0900E9C3C8 /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08407FA232C8A0900E9C3C8 /* FadeOutAnimationController.swift */; };
 		D0852EDD2332B6B40058EF83 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0852EDC2332B6B40058EF83 /* FilterTableViewController.swift */; };
 		D08B12DA22C72B4600F84A97 /* DefaultFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B12D922C72B4600F84A97 /* DefaultFilter.swift */; };
 		D08B12DC22C73F8800F84A97 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B12DB22C73F8800F84A97 /* FilterCollectionViewCell.swift */; };
 		D08B12E222C73FFA00F84A97 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B12E122C73FFA00F84A97 /* FavoritesTableViewCell.swift */; };
 		D08B12E422C7400B00F84A97 /* RecentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B12E322C7400B00F84A97 /* RecentsTableViewCell.swift */; };
+		D0CA0085233AA63800037003 /* Favorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CA0084233AA63800037003 /* Favorable.swift */; };
+		D0CA008B233AAED200037003 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CA008A233AAED200037003 /* View+Extensions.swift */; };
+		D0CA008D233AAEDD00037003 /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CA008C233AAEDD00037003 /* ViewController+Extensions.swift */; };
 		D0CDD45F2325E39B0026F5A7 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CDD45E2325E39B0026F5A7 /* PopupViewController.swift */; };
 		D0CDD4612326171B0026F5A7 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CDD4602326171B0026F5A7 /* DimmingPresentationController.swift */; };
 		D0CDD463232618760026F5A7 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CDD462232618760026F5A7 /* GradientView.swift */; };
@@ -37,7 +40,6 @@
 
 /* Begin PBXFileReference section */
 		D009AAE722C652720069594C /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		D01F5C3022C676A3006A0C46 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D0250E7E22C5D58300A966B9 /* Foodlette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodlette.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0250E8122C5D58300A966B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0250E8622C5D58300A966B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 		D0250EAA22C5D69B00A966B9 /* Foodlette.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Foodlette.xcdatamodel; sourceTree = "<group>"; };
 		D0250EAC22C5D6B600A966B9 /* YelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpModel.swift; sourceTree = "<group>"; };
 		D0275F3F22C6B9B80062F8D3 /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
+		D0530D09233987A20022611E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D08407FA232C8A0900E9C3C8 /* FadeOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeOutAnimationController.swift; sourceTree = "<group>"; };
 		D0852EDC2332B6B40058EF83 /* FilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		D08B12D922C72B4600F84A97 /* DefaultFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFilter.swift; sourceTree = "<group>"; };
@@ -60,6 +63,9 @@
 		D08B12E122C73FFA00F84A97 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		D08B12E322C7400B00F84A97 /* RecentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsTableViewCell.swift; sourceTree = "<group>"; };
 		D0B3D73322C83F2D0024343D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D0CA0084233AA63800037003 /* Favorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorable.swift; sourceTree = "<group>"; };
+		D0CA008A233AAED200037003 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		D0CA008C233AAEDD00037003 /* ViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extensions.swift"; sourceTree = "<group>"; };
 		D0CDD45E2325E39B0026F5A7 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		D0CDD4602326171B0026F5A7 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		D0CDD462232618760026F5A7 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -110,6 +116,7 @@
 				D0250E8D22C5D58300A966B9 /* Info.plist */,
 				D0250E8122C5D58300A966B9 /* AppDelegate.swift */,
 				D0250E9822C5D5B800A966B9 /* Model */,
+				D0CA008E233AB3B700037003 /* Protocol */,
 				D0250E9922C5D5C100A966B9 /* Controller */,
 				D038076522CD0E1A00E2C930 /* Extensions */,
 				D0CDD46423261AB10026F5A7 /* Cells */,
@@ -185,7 +192,9 @@
 		D038076522CD0E1A00E2C930 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D01F5C3022C676A3006A0C46 /* Extensions.swift */,
+				D0530D09233987A20022611E /* Colors.swift */,
+				D0CA008A233AAED200037003 /* View+Extensions.swift */,
+				D0CA008C233AAEDD00037003 /* ViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -205,6 +214,14 @@
 				D08B12D922C72B4600F84A97 /* DefaultFilter.swift */,
 			);
 			path = FilterModel;
+			sourceTree = "<group>";
+		};
+		D0CA008E233AB3B700037003 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D0CA0084233AA63800037003 /* Favorable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		D0CDD46423261AB10026F5A7 /* Cells */ = {
@@ -289,8 +306,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D009AAE822C652720069594C /* FavoritesViewController.swift in Sources */,
+				D0530D0A233987A20022611E /* Colors.swift in Sources */,
 				D0CDD463232618760026F5A7 /* GradientView.swift in Sources */,
 				D0250EA622C5D68000A966B9 /* YelpResponse.swift in Sources */,
+				D0CA0085233AA63800037003 /* Favorable.swift in Sources */,
 				D0250E9622C5D59A00A966B9 /* YelpClient.swift in Sources */,
 				D0250EAD22C5D6B600A966B9 /* YelpModel.swift in Sources */,
 				D08B12E422C7400B00F84A97 /* RecentsTableViewCell.swift in Sources */,
@@ -299,15 +318,16 @@
 				D08B12DC22C73F8800F84A97 /* FilterCollectionViewCell.swift in Sources */,
 				D0CDD46823261AF20026F5A7 /* SlideOutAnimationController.swift in Sources */,
 				D0275F4022C6B9B80062F8D3 /* DetailedViewController.swift in Sources */,
+				D0CA008D233AAEDD00037003 /* ViewController+Extensions.swift in Sources */,
 				D0250EA822C5D68F00A966B9 /* YelpConstants.swift in Sources */,
 				D0250EAB22C5D69B00A966B9 /* Foodlette.xcdatamodeld in Sources */,
 				D0250E9422C5D59100A966B9 /* DataController.swift in Sources */,
 				D08407FB232C8A0900E9C3C8 /* FadeOutAnimationController.swift in Sources */,
 				D08B12DA22C72B4600F84A97 /* DefaultFilter.swift in Sources */,
-				D01F5C3122C676A3006A0C46 /* Extensions.swift in Sources */,
 				D0CDD45F2325E39B0026F5A7 /* PopupViewController.swift in Sources */,
 				D0CDD46623261AD00026F5A7 /* BounceAnimcationController.swift in Sources */,
 				D0250EA022C5D62A00A966B9 /* HomeViewController.swift in Sources */,
+				D0CA008B233AAED200037003 /* View+Extensions.swift in Sources */,
 				D08B12E222C73FFA00F84A97 /* FavoritesTableViewCell.swift in Sources */,
 				D0250E8222C5D58300A966B9 /* AppDelegate.swift in Sources */,
 				D0250EA222C5D63A00A966B9 /* RecentsViewController.swift in Sources */,
