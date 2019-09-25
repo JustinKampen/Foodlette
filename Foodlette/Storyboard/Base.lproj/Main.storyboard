@@ -408,6 +408,9 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="4UC-tw-fV3">
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="shareButtonTapped:" destination="yoe-Sf-Cjp" id="Pmy-Jb-grb"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>

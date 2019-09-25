@@ -58,6 +58,16 @@ class DetailedViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func shareButtonTapped(_ sender: Any) {
+        guard let restaurantName = restaurantNameLabel.text else {
+            showAlert(message: "There was an error sharing the restaurant")
+            return
+        }
+        let restaurantImage = [restaurantImageView.image]
+        let activityView = UIActivityViewController(activityItems: [restaurantName, restaurantImage], applicationActivities: nil)
+        present(activityView, animated: true, completion: nil)
+    }
+    
     // -------------------------------------------------------------------------
     // MARK: - UI Display
     
