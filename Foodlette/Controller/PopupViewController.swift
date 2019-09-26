@@ -77,15 +77,6 @@ class PopupViewController: UIViewController, NSFetchedResultsControllerDelegate 
         updatePopupView()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        defaultFilterSelected = nil
-        createdFilterSelected = nil
-        favoritesFilterSelected = nil
-        foodletteWinner = nil
-//        restaurant = nil
-    }
-    
     // -------------------------------------------------------------------------
     // MARK: - UI Functionality
     

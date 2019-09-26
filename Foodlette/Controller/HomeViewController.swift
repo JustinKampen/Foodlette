@@ -260,6 +260,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                     self.activityIndicator(isAnimating: false, indexPath: indexPath)
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "showPopup", sender: nil)
+                        self.defaultFilterSelected = nil
+                        self.favoritesFilterSelected = nil
                     }
                 }
             }
@@ -282,6 +284,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                         self.activityIndicator(isAnimating: false, indexPath: indexPath)
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "showPopup", sender: nil)
+                            self.createdFilterSelected = nil
                         }
                     }
                 }
