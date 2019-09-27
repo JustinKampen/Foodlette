@@ -75,6 +75,7 @@ class PopupViewController: UIViewController, NSFetchedResultsControllerDelegate 
         gestureRecognizer.cancelsTouchesInView = false
         gestureRecognizer.delegate = self
         view.addGestureRecognizer(gestureRecognizer)
+        setupFetchedResultsController()
         updatePopupView()
     }
     
@@ -87,8 +88,20 @@ class PopupViewController: UIViewController, NSFetchedResultsControllerDelegate 
     }
     
     @IBAction func playButtonTapped(_ sender: Any) {
-        selectWinnerFrom(data: YelpModel.data)
-        if foodletteWinner != nil {
+        if defaultFilterSelected != nil {
+            if defaultFilterSelected?.favorites == true {
+                guard let favorites = favorites else {
+                    showAlert(message: "You currently do not have any favorite restaurants")
+                    return
+                }
+                selectWinnerFrom(favorites: favorites)
+                performSegue(withIdentifier: "winnerDetail", sender: nil)
+            } else {
+                selectWinnerFrom(data: YelpModel.data)
+                performSegue(withIdentifier: "winnerDetail", sender: nil)
+            }
+        } else if createdFilterSelected != nil {
+            selectWinnerFrom(data: YelpModel.data)
             performSegue(withIdentifier: "winnerDetail", sender: nil)
         } else {
             showAlert(message: "There was an error selecting the winner. Please try again")
