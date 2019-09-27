@@ -31,9 +31,10 @@ class PopupViewController: UIViewController, NSFetchedResultsControllerDelegate 
     var dataController = DataController.shared
     var fetchedResultsController: NSFetchedResultsController<Restaurant>!
     var favorites: [Restaurant]?
-    var defaultFilterSelected: DefaultFilter?
     var favoritesFilterSelected: DefaultFilter?
+    var defaultFilterSelected: DefaultFilter?
     var createdFilterSelected: Filter?
+    var favoriteWinner: Restaurant?
     var foodletteWinner: Business?
     
     required init?(coder aDecoder: NSCoder) {
@@ -127,8 +128,14 @@ class PopupViewController: UIViewController, NSFetchedResultsControllerDelegate 
     // MARK: - Select Winner for Filter
     
     func selectWinnerFrom(favorites: [Restaurant]) {
-        // TODO: - mark winner from favorites
-        showAlert(message: "There is currently no restaurants marked as favorite")
+        if favorites.count == 0 {
+            showAlert(message: "You currently do not have any favorite restaurants")
+        }
+        for _ in favorites.indices {
+            let winnerSelected = Int.random(in: 0...favorites.count - 1)
+            favoriteWinner = favorites[winnerSelected]
+            break
+        }
     }
     
     func selectWinnerFrom(data: [Business], minRating: Double = 1.0, maxRating: Double = 5.0) {
@@ -148,11 +155,15 @@ class PopupViewController: UIViewController, NSFetchedResultsControllerDelegate 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? DetailedViewController {
-            controller.foodletteWinner = foodletteWinner
-            if let defaultFilterSelected = defaultFilterSelected {
+            if let favoritesFilterSelected = favoritesFilterSelected {
+                controller.favoritesFilterSelected = favoritesFilterSelected
+                controller.favoriteWinner = favoriteWinner
+            } else if let defaultFilterSelected = defaultFilterSelected {
                 controller.defaultFilterSelected = defaultFilterSelected
+                controller.foodletteWinner = foodletteWinner
             } else if let createdFilterSelected = createdFilterSelected {
                 controller.createdFilterSelected = createdFilterSelected
+                controller.foodletteWinner = foodletteWinner
             }
         }
     }

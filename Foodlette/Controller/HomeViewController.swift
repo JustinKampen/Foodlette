@@ -71,7 +71,7 @@ class HomeViewController: UIViewController, NSFetchedResultsControllerDelegate {
             locationManager.startUpdatingLocation()
         }
     }
-        
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupFetchedResultsController()
@@ -241,6 +241,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             defaultFilterSelected = filter
             activityIndicator(isAnimating: true, indexPath: indexPath)
             if filter.favorites == true {
+                favoritesFilterSelected = filter
                 self.activityIndicator(isAnimating: false, indexPath: indexPath)
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "showPopup", sender: nil)

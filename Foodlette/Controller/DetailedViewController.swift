@@ -29,7 +29,9 @@ class DetailedViewController: UIViewController {
     }()
     var dataController = DataController.shared
     var restaurant: Restaurant?
+    var favoriteWinner: Restaurant?
     var foodletteWinner: Business?
+    var favoritesFilterSelected: DefaultFilter?
     var defaultFilterSelected: DefaultFilter?
     var createdFilterSelected: Filter?
     
@@ -39,7 +41,11 @@ class DetailedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        if let foodletteWinner = foodletteWinner {
+        if let favoriteWinner = favoriteWinner {
+            displayInformationFor(favoriteWinner)
+            displayPinLocationFor(favoriteWinner)
+            saveDataFor(favorite: favoriteWinner)
+        } else if let foodletteWinner = foodletteWinner {
             displayInformationFor(winner: foodletteWinner)
             displayPinLocationFor(winner: foodletteWinner)
             saveDataFor(winner: foodletteWinner)
@@ -137,6 +143,26 @@ class DetailedViewController: UIViewController {
     
     // -------------------------------------------------------------------------
     // MARK: - Save Restaurant Details to CoreData
+    
+    func saveDataFor(favorite: Restaurant) {
+        let restaurant = Restaurant(context: dataController.viewContext)
+        restaurant.name = favorite.name
+        restaurant.category = favorite.category
+        restaurant.latitude = favorite.latitude
+        restaurant.longitude = favorite.longitude
+        restaurant.rating = favorite.rating
+        restaurant.reviewCount = "\(String(describing: favorite.reviewCount)) Reviews"
+        restaurant.date = Date()
+        restaurant.isFavorite = false
+        if let winnerImage = restaurantImageView.image {
+            let imageData = winnerImage.jpegData(compressionQuality: 0.8)
+            restaurant.image = imageData
+        }
+        if favoritesFilterSelected != nil {
+            restaurant.withFilter = "Selected with \(String(describing: favoritesFilterSelected?.name))"
+        }
+        dataController.saveViewContext()
+    }
     
     func saveDataFor(winner: Business) {
         let restaurant = Restaurant(context: dataController.viewContext)
