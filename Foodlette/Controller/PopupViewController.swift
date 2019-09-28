@@ -22,11 +22,6 @@ class PopupViewController: UIViewController, NSFetchedResultsControllerDelegate 
     @IBOutlet weak var filterMaxRatingLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     
-    enum AnimationStyle {
-        case slide
-        case fade
-    }
-    
     var dismissStyle = AnimationStyle.fade
     var dataController = DataController.shared
     var fetchedResultsController: NSFetchedResultsController<Restaurant>!
@@ -36,6 +31,11 @@ class PopupViewController: UIViewController, NSFetchedResultsControllerDelegate 
     var createdFilterSelected: Filter?
     var favoriteWinner: Restaurant?
     var foodletteWinner: Business?
+    
+    enum AnimationStyle {
+        case slide
+        case fade
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
