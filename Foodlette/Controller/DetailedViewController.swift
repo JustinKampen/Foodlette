@@ -42,16 +42,16 @@ class DetailedViewController: UIViewController {
         super.viewDidLoad()
         mapView.delegate = self
         if let favoriteWinner = favoriteWinner {
-            displayInformationFor(favoriteWinner)
-            displayPinLocationFor(favoriteWinner)
+            displayInformationFor(restaurant: favoriteWinner)
+            displayPinLocationFor(restaurant: favoriteWinner)
             saveDataFor(favorite: favoriteWinner)
         } else if let foodletteWinner = foodletteWinner {
             displayInformationFor(winner: foodletteWinner)
             displayPinLocationFor(winner: foodletteWinner)
             saveDataFor(winner: foodletteWinner)
         } else if let restaurant = restaurant {
-            displayInformationFor(restaurant)
-            displayPinLocationFor(restaurant)
+            displayInformationFor(restaurant: restaurant)
+            displayPinLocationFor(restaurant: restaurant)
         } else {
             showAlert(message: "There was an error loading restaurant data")
         }
@@ -77,7 +77,7 @@ class DetailedViewController: UIViewController {
     // -------------------------------------------------------------------------
     // MARK: - UI Display
     
-    func displayInformationFor(_ restaurant: Restaurant) {
+    func displayInformationFor(restaurant: Restaurant) {
         restaurantNameLabel.text = restaurant.name
         restaurantCategoryLabel.text = restaurant.category
         restaurantRatingImageView.image = YelpModel.displayRatingImage(for: restaurant.rating)
@@ -103,7 +103,7 @@ class DetailedViewController: UIViewController {
         }
     }
     
-    func displayPinLocationFor(_ restaurant: Restaurant) {
+    func displayPinLocationFor(restaurant: Restaurant) {
         let annotation = MKPointAnnotation()
         annotation.coordinate.latitude = restaurant.latitude
         annotation.coordinate.longitude = restaurant.longitude
