@@ -8,11 +8,6 @@
 
 import UIKit
 
-//protocol Favorable: class {
-//    
-//    func didTapFavoriteButton(for restaurant: Restaurant)
-//}
-
 class FavoritesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var favoriteImageView: UIImageView!

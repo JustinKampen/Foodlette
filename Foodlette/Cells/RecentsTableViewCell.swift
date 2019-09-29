@@ -8,11 +8,6 @@
 
 import UIKit
 
-//protocol RecentFavorable: class {
-//
-//    func didTapFavoriteButton(for restaurant: Restaurant)
-//}
-
 class RecentsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var recentNameLabel: UILabel!
