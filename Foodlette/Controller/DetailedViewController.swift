@@ -37,7 +37,7 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
     var favoritesFilterSelected: DefaultFilter?
     var defaultFilterSelected: DefaultFilter?
     var createdFilterSelected: Filter?
-    var detail: Restaurant?
+    var restaurants = [Restaurant]()
     var delegate: Favorable?
     
     // -------------------------------------------------------------------------
@@ -51,9 +51,32 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
-//            recents = fetchedResultsController.fetchedObjects ?? []
+            restaurants = fetchedResultsController.fetchedObjects ?? []
         } catch {
             fatalError("The fetch could not be performed: \(error.localizedDescription)")
+        }
+    }
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Updating Inferface For Restaurant
+    
+    fileprivate func updateInterfaceForRestaurant() {
+        if let favoriteWinner = favoriteWinner {
+            isFavoriteButton.isEnabled = false
+            displayInformationFor(restaurant: favoriteWinner)
+            displayPinLocationFor(restaurant: favoriteWinner)
+            saveDataFor(favorite: favoriteWinner)
+        } else if let foodletteWinner = foodletteWinner {
+            isFavoriteButton.isEnabled = false
+            displayInformationFor(winner: foodletteWinner)
+            displayPinLocationFor(winner: foodletteWinner)
+            saveDataFor(winner: foodletteWinner)
+        } else if let restaurant = restaurant {
+            isFavoriteButton.isEnabled = true
+            displayInformationFor(restaurant: restaurant)
+            displayPinLocationFor(restaurant: restaurant)
+        } else {
+            showAlert(message: "There was an error loading restaurant data")
         }
     }
     
@@ -65,21 +88,7 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
         mapView.delegate = self
         delegate = self
         setupFetchedResultsController()
-        if let favoriteWinner = favoriteWinner {
-            displayInformationFor(restaurant: favoriteWinner)
-            displayPinLocationFor(restaurant: favoriteWinner)
-            saveDataFor(favorite: favoriteWinner)
-        } else if let foodletteWinner = foodletteWinner {
-            displayInformationFor(winner: foodletteWinner)
-            displayPinLocationFor(winner: foodletteWinner)
-            saveDataFor(winner: foodletteWinner)
-        } else if let restaurant = restaurant {
-            displayInformationFor(restaurant: restaurant)
-            displayPinLocationFor(restaurant: restaurant)
-//            setRestaurant(detail: restaurant)
-        } else {
-            showAlert(message: "There was an error loading restaurant data")
-        }
+        updateInterfaceForRestaurant()
     }
     
     // -------------------------------------------------------------------------
@@ -107,7 +116,7 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
     }
     
     // -------------------------------------------------------------------------
-    // MARK: - UI Display
+    // MARK: - UI Display - Restaurant
     
     func displayInformationFor(restaurant: Restaurant) {
         restaurantNameLabel.text = restaurant.name
@@ -123,32 +132,10 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
         updateFavoriteButtonFor(restaurant: restaurant)
     }
     
-    func displayInformationFor(winner: Business) {
-        restaurantNameLabel.text = winner.name
-        restaurantRatingImageView.image = YelpModel.displayRatingImage(for: winner.rating)
-        restaurantReviewsCountLabel.text = "\(String(describing: winner.reviewCount)) Reviews"
-        let date = Date()
-        restaurantSelectedOnLabel.text = dateFormatter.string(from: date)
-        if let url = URL(string: winner.imageURL) {
-            if let data = try? Data(contentsOf: url) {
-                restaurantImageView.image = UIImage(data: data)
-            }
-        }
-    }
-    
     func displayPinLocationFor(restaurant: Restaurant) {
         let annotation = MKPointAnnotation()
         annotation.coordinate.latitude = restaurant.latitude
         annotation.coordinate.longitude = restaurant.longitude
-        let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
-        mapView.addAnnotation(annotation)
-        mapView.setRegion(region, animated: true)
-    }
-    
-    func displayPinLocationFor(winner: Business) {
-        let annotation = MKPointAnnotation()
-        annotation.coordinate.latitude = winner.coordinates.latitude
-        annotation.coordinate.longitude = winner.coordinates.longitude
         let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
         mapView.addAnnotation(annotation)
         mapView.setRegion(region, animated: true)
@@ -161,9 +148,6 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
             isFavoriteButton.setImage(#imageLiteral(resourceName: "open-heart-50"), for: .normal)
         }
     }
-    
-    // -------------------------------------------------------------------------
-    // MARK: - Save Restaurant Details to CoreData
     
     func saveDataFor(favorite: Restaurant) {
         let restaurant = Restaurant(context: dataController.viewContext)
@@ -183,6 +167,31 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
             restaurant.withFilter = "Selected with \(String(describing: favoritesFilterSelected?.name))"
         }
         dataController.saveViewContext()
+    }
+    
+    // -------------------------------------------------------------------------
+    // MARK: - UI Display - Foodlette Winner
+    
+    func displayInformationFor(winner: Business) {
+        restaurantNameLabel.text = winner.name
+        restaurantRatingImageView.image = YelpModel.displayRatingImage(for: winner.rating)
+        restaurantReviewsCountLabel.text = "\(String(describing: winner.reviewCount)) Reviews"
+        let date = Date()
+        restaurantSelectedOnLabel.text = dateFormatter.string(from: date)
+        if let url = URL(string: winner.imageURL) {
+            if let data = try? Data(contentsOf: url) {
+                restaurantImageView.image = UIImage(data: data)
+            }
+        }
+    }
+    
+    func displayPinLocationFor(winner: Business) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate.latitude = winner.coordinates.latitude
+        annotation.coordinate.longitude = winner.coordinates.longitude
+        let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
+        mapView.addAnnotation(annotation)
+        mapView.setRegion(region, animated: true)
     }
     
     func saveDataFor(winner: Business) {
