@@ -58,29 +58,6 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
     }
     
     // -------------------------------------------------------------------------
-    // MARK: - Updating Inferface For Restaurant
-    
-    fileprivate func updateInterfaceForRestaurant() {
-        if let favoriteWinner = favoriteWinner {
-            isFavoriteButton.isEnabled = false
-            displayInformationFor(restaurant: favoriteWinner)
-            displayPinLocationFor(restaurant: favoriteWinner)
-            saveDataFor(favorite: favoriteWinner)
-        } else if let foodletteWinner = foodletteWinner {
-            isFavoriteButton.isEnabled = false
-            displayInformationFor(winner: foodletteWinner)
-            displayPinLocationFor(winner: foodletteWinner)
-            saveDataFor(winner: foodletteWinner)
-        } else if let restaurant = restaurant {
-            isFavoriteButton.isEnabled = true
-            displayInformationFor(restaurant: restaurant)
-            displayPinLocationFor(restaurant: restaurant)
-        } else {
-            showAlert(message: "There was an error loading restaurant data")
-        }
-    }
-    
-    // -------------------------------------------------------------------------
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -112,6 +89,29 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
         if let restaurant = restaurant {
             delegate?.didTapFavoriteButton(for: restaurant)
             updateFavoriteButtonFor(restaurant: restaurant)
+        }
+    }
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Updating UI For selected Restaurant/Winner
+    
+    func updateInterfaceForRestaurant() {
+        if let favoriteWinner = favoriteWinner {
+            isFavoriteButton.isEnabled = false
+            displayInformationFor(restaurant: favoriteWinner)
+            displayPinLocationFor(restaurant: favoriteWinner)
+            saveDataFor(favorite: favoriteWinner)
+        } else if let foodletteWinner = foodletteWinner {
+            isFavoriteButton.isEnabled = false
+            displayInformationFor(winner: foodletteWinner)
+            displayPinLocationFor(winner: foodletteWinner)
+            saveDataFor(winner: foodletteWinner)
+        } else if let restaurant = restaurant {
+            isFavoriteButton.isEnabled = true
+            displayInformationFor(restaurant: restaurant)
+            displayPinLocationFor(restaurant: restaurant)
+        } else {
+            showAlert(message: "There was an error loading the restaurant data")
         }
     }
     
