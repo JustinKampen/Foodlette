@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreData
 import MapKit
 
-class DetailedViewController: UIViewController {
+class DetailedViewController: UIViewController, NSFetchedResultsControllerDelegate {
     
     // -------------------------------------------------------------------------
     // MARK: - Outlets and Variables
@@ -20,6 +21,7 @@ class DetailedViewController: UIViewController {
     @IBOutlet weak var restaurantRatingImageView: UIImageView!
     @IBOutlet weak var restaurantReviewsCountLabel: UILabel!
     @IBOutlet weak var restaurantSelectedOnLabel: UILabel!
+    @IBOutlet weak var isFavoriteButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     
     let dateFormatter: DateFormatter = {
@@ -28,12 +30,32 @@ class DetailedViewController: UIViewController {
         return df
     }()
     var dataController = DataController.shared
+    var fetchedResultsController: NSFetchedResultsController<Restaurant>!
     var restaurant: Restaurant?
     var favoriteWinner: Restaurant?
     var foodletteWinner: Business?
     var favoritesFilterSelected: DefaultFilter?
     var defaultFilterSelected: DefaultFilter?
     var createdFilterSelected: Filter?
+    var detail: Restaurant?
+    var delegate: Favorable?
+    
+    // -------------------------------------------------------------------------
+    // MARK: - Fetching CoreData
+
+    fileprivate func setupFetchedResultsController() {
+        let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        do {
+            try fetchedResultsController.performFetch()
+//            recents = fetchedResultsController.fetchedObjects ?? []
+        } catch {
+            fatalError("The fetch could not be performed: \(error.localizedDescription)")
+        }
+    }
     
     // -------------------------------------------------------------------------
     // MARK: - Life Cycle
@@ -41,6 +63,8 @@ class DetailedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        delegate = self
+        setupFetchedResultsController()
         if let favoriteWinner = favoriteWinner {
             displayInformationFor(restaurant: favoriteWinner)
             displayPinLocationFor(restaurant: favoriteWinner)
@@ -52,6 +76,7 @@ class DetailedViewController: UIViewController {
         } else if let restaurant = restaurant {
             displayInformationFor(restaurant: restaurant)
             displayPinLocationFor(restaurant: restaurant)
+//            setRestaurant(detail: restaurant)
         } else {
             showAlert(message: "There was an error loading restaurant data")
         }
@@ -74,6 +99,13 @@ class DetailedViewController: UIViewController {
         present(activityView, animated: true, completion: nil)
     }
     
+    @IBAction func favoriteButtonTapped(_ sender: Any) {
+        if let restaurant = restaurant {
+            delegate?.didTapFavoriteButton(for: restaurant)
+            updateFavoriteButtonFor(restaurant: restaurant)
+        }
+    }
+    
     // -------------------------------------------------------------------------
     // MARK: - UI Display
     
@@ -88,6 +120,7 @@ class DetailedViewController: UIViewController {
         if let date = restaurant.date {
             restaurantSelectedOnLabel.text = dateFormatter.string(from: date)
         }
+        updateFavoriteButtonFor(restaurant: restaurant)
     }
     
     func displayInformationFor(winner: Business) {
@@ -119,6 +152,14 @@ class DetailedViewController: UIViewController {
         let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
         mapView.addAnnotation(annotation)
         mapView.setRegion(region, animated: true)
+    }
+    
+    func updateFavoriteButtonFor(restaurant: Restaurant) {
+        if restaurant.isFavorite {
+            isFavoriteButton.setImage(#imageLiteral(resourceName: "filled-heart-50"), for: .normal)
+        } else {
+            isFavoriteButton.setImage(#imageLiteral(resourceName: "open-heart-50"), for: .normal)
+        }
     }
     
     // -------------------------------------------------------------------------
@@ -162,6 +203,21 @@ class DetailedViewController: UIViewController {
             restaurant.withFilter = "Selected with \(defaultFilterSelected.name)"
         } else if let createdFilterSelected = createdFilterSelected {
             restaurant.withFilter = "Selected with \(createdFilterSelected.name!)"
+        }
+        dataController.saveViewContext()
+    }
+}
+
+// -----------------------------------------------------------------------------
+// MARK: - Favorable Protocol
+
+extension DetailedViewController: Favorable {
+    
+    func didTapFavoriteButton(for restaurant: Restaurant) {
+        if restaurant.isFavorite {
+            restaurant.isFavorite = false
+        } else {
+            restaurant.isFavorite = true
         }
         dataController.saveViewContext()
     }

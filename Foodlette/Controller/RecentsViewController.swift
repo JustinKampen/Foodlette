@@ -67,7 +67,7 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         super.viewWillDisappear(animated)
         fetchedResultsController = nil
     }
-
+    
     // -------------------------------------------------------------------------
     // MARK: - Search Bar Functionality
     
