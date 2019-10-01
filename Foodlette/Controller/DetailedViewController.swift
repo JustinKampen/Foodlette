@@ -134,6 +134,7 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
     
     func displayPinLocationFor(restaurant: Restaurant) {
         let annotation = MKPointAnnotation()
+        annotation.title = restaurant.name
         annotation.coordinate.latitude = restaurant.latitude
         annotation.coordinate.longitude = restaurant.longitude
         let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
@@ -187,6 +188,7 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
     
     func displayPinLocationFor(winner: Business) {
         let annotation = MKPointAnnotation()
+        annotation.title = winner.name
         annotation.coordinate.latitude = winner.coordinates.latitude
         annotation.coordinate.longitude = winner.coordinates.longitude
         let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
