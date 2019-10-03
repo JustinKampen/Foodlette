@@ -154,6 +154,7 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
     func saveDataFor(favorite: Restaurant) {
         let restaurant = Restaurant(context: dataController.viewContext)
         restaurant.name = favorite.name
+        restaurant.url = favorite.url
         restaurant.category = favorite.category
         restaurant.latitude = favorite.latitude
         restaurant.longitude = favorite.longitude
@@ -190,7 +191,7 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
     func displayPinLocationFor(winner: Business) {
         let annotation = MKPointAnnotation()
         annotation.title = winner.name
-//        annotation.subtitle = winner.url
+        annotation.subtitle = winner.url
         annotation.coordinate.latitude = winner.coordinates.latitude
         annotation.coordinate.longitude = winner.coordinates.longitude
         let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
@@ -201,7 +202,7 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
     func saveDataFor(winner: Business) {
         let restaurant = Restaurant(context: dataController.viewContext)
         restaurant.name = winner.name
-//        TODO: URL
+        restaurant.url = winner.url
         restaurant.category = winner.categories.first?.title
         restaurant.latitude = winner.coordinates.latitude
         restaurant.longitude = winner.coordinates.longitude

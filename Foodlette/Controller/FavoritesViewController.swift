@@ -30,7 +30,7 @@ class FavoritesViewController: UIViewController, NSFetchedResultsControllerDeleg
         let fetchRequest: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
         let predicate = NSPredicate(format: "isFavorite == %@", NSNumber(value: true))
         fetchRequest.predicate = predicate
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
