@@ -1,59 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Filter" representedClassName="Filter" syncable="YES" codeGenerationType="class">
-        <attribute name="category" optional="YES" attributeType="String">
-            <userInfo/>
-        </attribute>
-        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES">
-            <userInfo/>
-        </attribute>
-        <attribute name="maxRating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES">
-            <userInfo/>
-        </attribute>
-        <attribute name="minRating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES">
-            <userInfo/>
-        </attribute>
-        <attribute name="name" optional="YES" attributeType="String">
-            <userInfo/>
-        </attribute>
-        <attribute name="narrative" optional="YES" attributeType="String">
-            <userInfo/>
-        </attribute>
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="maxRating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="minRating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="narrative" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Restaurant" representedClassName="Restaurant" syncable="YES" codeGenerationType="class">
-        <attribute name="category" optional="YES" attributeType="String">
-            <userInfo/>
-        </attribute>
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO">
-            <userInfo/>
-        </attribute>
-        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES">
-            <userInfo/>
-        </attribute>
-        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES">
-            <userInfo/>
-        </attribute>
-        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES">
-            <userInfo/>
-        </attribute>
-        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES">
-            <userInfo/>
-        </attribute>
-        <attribute name="name" optional="YES" attributeType="String">
-            <userInfo/>
-        </attribute>
-        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES">
-            <userInfo/>
-        </attribute>
-        <attribute name="reviewCount" optional="YES" attributeType="String">
-            <userInfo/>
-        </attribute>
-        <attribute name="withFilter" optional="YES" attributeType="String">
-            <userInfo/>
-        </attribute>
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="reviewCount" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="withFilter" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="Filter" positionX="-54" positionY="72" width="128" height="135"/>
-        <element name="Restaurant" positionX="-54" positionY="72" width="128" height="195"/>
+        <element name="Restaurant" positionX="-54" positionY="72" width="128" height="208"/>
     </elements>
 </model>

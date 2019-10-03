@@ -18,6 +18,7 @@ struct YelpResponse: Codable {
 struct Business: Codable {
     let name: String
     let imageURL: String
+    let url: String
     let reviewCount: Int
     let categories: [Category]
     let rating: Double
@@ -26,6 +27,7 @@ struct Business: Codable {
     enum CodingKeys: String, CodingKey {
         case name
         case imageURL = "image_url"
+        case url
         case reviewCount = "review_count"
         case categories
         case rating

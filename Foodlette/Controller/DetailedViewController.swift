@@ -135,6 +135,7 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
     func displayPinLocationFor(restaurant: Restaurant) {
         let annotation = MKPointAnnotation()
         annotation.title = restaurant.name
+        annotation.subtitle = restaurant.url
         annotation.coordinate.latitude = restaurant.latitude
         annotation.coordinate.longitude = restaurant.longitude
         let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
@@ -189,6 +190,7 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
     func displayPinLocationFor(winner: Business) {
         let annotation = MKPointAnnotation()
         annotation.title = winner.name
+//        annotation.subtitle = winner.url
         annotation.coordinate.latitude = winner.coordinates.latitude
         annotation.coordinate.longitude = winner.coordinates.longitude
         let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 2500, longitudinalMeters: 2500)
@@ -199,6 +201,7 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
     func saveDataFor(winner: Business) {
         let restaurant = Restaurant(context: dataController.viewContext)
         restaurant.name = winner.name
+//        TODO: URL
         restaurant.category = winner.categories.first?.title
         restaurant.latitude = winner.coordinates.latitude
         restaurant.longitude = winner.coordinates.longitude
@@ -251,5 +254,13 @@ extension DetailedViewController: MKMapViewDelegate {
             pinView!.annotation = annotation
         }
         return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+            if let toOpen = view.annotation?.subtitle, let urlToOpen = URL(string: toOpen!) {
+                UIApplication.shared.open(urlToOpen, options: [:], completionHandler: nil)
+            }
+        }
     }
 }
