@@ -97,17 +97,17 @@ class DetailedViewController: UIViewController, NSFetchedResultsControllerDelega
     
     func updateInterfaceForRestaurant() {
         if let favoriteWinner = favoriteWinner {
-            isFavoriteButton.isEnabled = false
+            isFavoriteButton.isHidden = true
             displayInformationFor(restaurant: favoriteWinner)
             displayPinLocationFor(restaurant: favoriteWinner)
             saveDataFor(favorite: favoriteWinner)
         } else if let foodletteWinner = foodletteWinner {
-            isFavoriteButton.isEnabled = false
+            isFavoriteButton.isHidden = true
             displayInformationFor(winner: foodletteWinner)
             displayPinLocationFor(winner: foodletteWinner)
             saveDataFor(winner: foodletteWinner)
         } else if let restaurant = restaurant {
-            isFavoriteButton.isEnabled = true
+            isFavoriteButton.isHidden = false
             displayInformationFor(restaurant: restaurant)
             displayPinLocationFor(restaurant: restaurant)
         } else {
