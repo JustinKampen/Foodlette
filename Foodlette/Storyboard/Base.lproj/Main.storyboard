@@ -524,13 +524,13 @@
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gF-rJ-aa5">
                                         <rect key="frame" x="8" y="197" width="224" height="35"/>
-                                        <color key="backgroundColor" red="0.65555555555555556" green="0.17929507054797048" blue="0.15133250527673622" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" red="0.9155239463" green="0.60436064" blue="0.2476135492" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="q4F-cb-O6V"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
                                         <state key="normal" title="Play">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="playButtonTapped:" destination="gFh-gI-dfG" eventType="touchUpInside" id="kTW-5I-YCu"/>
@@ -1064,6 +1064,6 @@
         <image name="small_5" width="82" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EPG-cU-GPb"/>
+        <segue reference="cdr-cP-jmY"/>
     </inferredMetricsTieBreakers>
 </document>
