@@ -10,7 +10,6 @@ import Foundation
 
 // MARK: - Favorable Protocol
 // Handles marking restaurant as favorite
-
 protocol Favorable: class {
     
     func didTapFavoriteButton(for restaurant: Restaurant)
