@@ -15,8 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         DataController.shared.load()
+        if #available(iOS 13.0, *) {
+            window?.overrideUserInterfaceStyle = .light
+        }
         UINavigationBar.appearance().tintColor = .black
         UISearchBar.appearance().tintColor = .black
+        
         return true
     }
 
