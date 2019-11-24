@@ -79,7 +79,7 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Recents"
         definesPresentationContext = true
-        let offset = CGPoint.init(x:0, y: searchController.searchBar.bounds.height)
+        let offset = CGPoint.init(x: 0, y: searchController.searchBar.bounds.height)
         tableView.setContentOffset(offset, animated: false)
     }
     
@@ -108,17 +108,6 @@ class RecentsViewController: UIViewController, NSFetchedResultsControllerDelegat
         let recentToDelete = fetchedResultsController.object(at: indexPath)
         dataController.viewContext.delete(recentToDelete)
         dataController.saveViewContext()
-    }
-    
-    func updateEditButtonState() {
-        if let sections = fetchedResultsController.sections {
-            navigationItem.rightBarButtonItem?.isEnabled = sections[0].numberOfObjects > 0
-        }
-    }
-    
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        tableView.setEditing(editing, animated: animated)
     }
     
     // -------------------------------------------------------------------------
