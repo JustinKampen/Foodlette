@@ -10,6 +10,9 @@ import Foundation
 
 class YelpClient {
     
+    // Zomato Key: eaa0792a0b72d9ab5da71cfe56b4237c
+    // https://developers.zomato.com/documentation
+    
     // -------------------------------------------------------------------------
     // MARK: - Yelp API Endpoints
     
